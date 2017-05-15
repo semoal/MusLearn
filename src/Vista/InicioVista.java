@@ -18,6 +18,7 @@ import Controlador.VistaControlador;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class InicioVista {
 
@@ -36,6 +37,7 @@ public class InicioVista {
 	private void initialize() {
 		VistaControlador vc = new VistaControlador();
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(InicioVista.class.getResource("/Imagen/je.png")));
 		frame.setTitle("MusLearn - DAM");
 		frame.getContentPane().setBackground(new Color(238, 238, 238));
 		frame.setBounds(100, 100, 450, 300);
