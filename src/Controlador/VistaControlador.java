@@ -7,7 +7,7 @@ import javax.swing.JButton;
 
 import Vista.AddLetraVista;
 import Vista.LyricsVista;
-import Vista.RankingVista;
+import Vista.RankingView;
 
 public class VistaControlador {
 	/**
@@ -29,8 +29,8 @@ public class VistaControlador {
 	public void goRanking(JButton ranking){
 		ranking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RankingVista window = new RankingVista();
-				window.frmRankingMuslearn.setVisible(true);
+				RankingView window = new RankingView();
+				window.frame.setVisible(true);
 			}
 		});
 	}
@@ -43,7 +43,6 @@ public class VistaControlador {
 			public void actionPerformed(ActionEvent e) {
 				LyricsVista window = new LyricsVista();
 				window.frame.setVisible(true);
-               // new MyFrame().setVisible(true);
 			}
 		});
 	}

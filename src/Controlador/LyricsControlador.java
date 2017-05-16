@@ -113,6 +113,7 @@ public class LyricsControlador {
 				 System.out.println(lyric.getText());
 			 }
 		 } catch (SearchLyricsException e) {
+			 textArea.setText("No hemos encontrado letra para esa cancion");
 			 e.printStackTrace();
 		 }
 	}

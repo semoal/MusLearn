@@ -1,0 +1,98 @@
+package Vista;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import java.awt.Component;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import Controlador.RankingControlador;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.UIManager;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Font;
+import javax.swing.border.BevelBorder;
+import java.awt.GridLayout;
+
+public class RankingView {
+
+	public JFrame frame;
+	private JTable table;
+
+
+	/**
+	 * Create the application.
+	 */
+	public RankingView() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		RankingControlador rk = new RankingControlador();
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+		
+		JLabel lblNewLabel = new JLabel("Ranking");
+		lblNewLabel.setFont(new Font("LondonBetween", Font.PLAIN, 40));
+		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JPanel panel_1 = new JPanel();
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_1.add(scrollPane_1);
+		
+		table = new JTable();
+		table.setBackground(Color.LIGHT_GRAY);
+		scrollPane_1.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Sergio Moreno", "10"},
+				{"Prueba moreno", "5"},
+				{"David Ubeda", "2"},
+				{"Marco climent", "1"},
+				{"Dani", "2"},
+			},
+			new String[] {
+				"Nombre completo", "Número Letras"
+			}
+		));
+		
+
+		
+		JPanel panel2 = new JPanel();
+		frame.getContentPane().add(panel2);
+		
+		JButton btnExportar = new JButton("Exportar");
+		panel2.add(btnExportar);
+		btnExportar.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JButton btnVolver = new JButton("Volver");
+		panel2.add(btnVolver);
+		btnVolver.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		//Acción botón exportar PDF
+		rk.exportarPDF(btnExportar);
+		//Acción boton volver main
+		rk.volverMain(btnVolver,frame);
+	}
+
+}
