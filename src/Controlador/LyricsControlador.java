@@ -9,6 +9,10 @@ import javax.swing.JTextArea;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -39,11 +43,29 @@ public class LyricsControlador {
 					videoACancion(input,textArea);
 					meteVideo(input,panel,browser);
 					tituloAlyrics(tituloCancion,textArea);
+					exportarText(btnBuscar,textArea);
 				}else{
 					textArea.setText("Url no valida lo siento");
 				}
 			}
 		});
+	}
+	/*Boton para exportar a .txt  */
+	public void exportarText(JButton button,JTextArea textArea){
+		String fichero = this.tituloCancion[0]+"-"+this.tituloCancion[1]+".txt";
+		File x = new File(fichero);
+		if(!x.exists()){
+			try {
+				BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));
+				bw.write(textArea.getText());
+				bw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			System.out.println("ese fichero ya existe");
+		}
+		
 	}
 	/*
 	 * Método que le pasamos por parametro el String de youtube y hace la conversion a JSON para poder obtener el titulo de este
@@ -121,6 +143,7 @@ public class LyricsControlador {
 				 for (Lyrics lyric : lyrics) {
 					 String clean = replaceAcutesHTML(lyric.getText());
 					 textArea.setText(clean);
+				     textArea.setCaretPosition(0);
 				 } 
 			 }else{
 				 textArea.setText("No hemos encontrado letra para esa cancion");
