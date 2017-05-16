@@ -26,6 +26,7 @@ public class LyricsControlador {
 	private String[] tituloCancion;
 	private String urlYoutube;
 	private String url;
+	private boolean buscar;
 	
 	/*
 	 * Acción del boton que realiza todo lo necesario para sacar el video y las lyrics
@@ -33,28 +34,34 @@ public class LyricsControlador {
 	public void ejecutaTodo(JButton btnBuscar,JTextField input,JTextArea textArea,JPanel panel,Browser browser){
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				urlAtitulo(urlYoutube);
-				videoACancion(input,textArea);
-				meteVideo(input,panel,browser);
-				tituloAlyrics(tituloCancion,textArea);
-
+				urlAtitulo(input);
+				if(buscar){
+					videoACancion(input,textArea);
+					meteVideo(input,panel,browser);
+					tituloAlyrics(tituloCancion,textArea);
+				}else{
+					textArea.setText("Url no valida lo siento");
+				}
 			}
 		});
 	}
 	/*
 	 * Método que le pasamos por parametro el String de youtube y hace la conversion a JSON para poder obtener el titulo de este
 	 */
-	public String urlAtitulo(String youtubeUrl){
-	    try {
-	        if (youtubeUrl != null) {
+	public String urlAtitulo(JTextField url){
+		String youtubeUrl = url.getText();
+		try {
+	        if (youtubeUrl != null && youtubeUrl.contains("www.youtube.com")) {
 	            URL embededURL = new URL("http://www.youtube.com/oembed?url=" +
 	                youtubeUrl + "&format=json"
 	            );
 	            this.tituloCancionTemp= new JSONObject(IOUtils.toString(embededURL)).getString("title");
+	        	this.buscar = true;
+	        }else{
+	        	this.buscar = false;
 	        }
 
 	    } catch (Exception e) {
-	        e.printStackTrace();
 	    }
 	    return null;
 	}
@@ -101,20 +108,25 @@ public class LyricsControlador {
 	public void tituloAlyrics(String[] tituloCancion,JTextArea textArea){
 		 SearchLyrics searchLyrics = new SearchLyrics();
 		 LyricsServiceBean bean = new LyricsServiceBean();
-		 bean.setSongName(this.tituloCancion[1]);
-		 bean.setSongArtist(this.tituloCancion[0]);
-		 System.out.println(this.tituloCancion[0] + "-" +this.tituloCancion[1] );
 		 List<Lyrics> lyrics;
 		 try {
-			 lyrics = searchLyrics.searchLyrics(bean);
-			 for (Lyrics lyric : lyrics) {
-				 String clean = replaceAcutesHTML(lyric.getText());
-				 textArea.setText(clean);
-				 System.out.println(lyric.getText());
+			 if(this.tituloCancion.length>1){
+				 bean.setSongName(this.tituloCancion[1]);
+				 bean.setSongArtist(this.tituloCancion[0]);
+			 }else{
+				 textArea.setText("No hemos encontrado letra para esa cancion"); 
 			 }
+			 lyrics = searchLyrics.searchLyrics(bean);
+			 if(!lyrics.isEmpty()){
+				 for (Lyrics lyric : lyrics) {
+					 String clean = replaceAcutesHTML(lyric.getText());
+					 textArea.setText(clean);
+				 } 
+			 }else{
+				 textArea.setText("No hemos encontrado letra para esa cancion");
+			 }
+			 
 		 } catch (SearchLyricsException e) {
-			 textArea.setText("No hemos encontrado letra para esa cancion");
-			 e.printStackTrace();
 		 }
 	}
 	
