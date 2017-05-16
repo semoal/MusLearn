@@ -18,24 +18,9 @@ import java.awt.FlowLayout;
 
 public class RankingVista {
 
-	private JFrame frmRankingMuslearn;
+	public JFrame frmRankingMuslearn;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RankingVista window = new RankingVista();
-					window.frmRankingMuslearn.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -49,7 +34,7 @@ public class RankingVista {
 	 */
 	private void initialize() {
 		frmRankingMuslearn = new JFrame();
-		frmRankingMuslearn.setIconImage(Toolkit.getDefaultToolkit().getImage(RankingVista.class.getResource("/Imagen/je.png")));
+		//frmRankingMuslearn.setIconImage(Toolkit.getDefaultToolkit().getImage(RankingVista.class.getResource("/Imagen/je.png")));
 		frmRankingMuslearn.setTitle("Ranking - MusLearn");
 		frmRankingMuslearn.setBounds(100, 100, 450, 300);
 		frmRankingMuslearn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.JPanel;
 
 public class InicioVista {
 
@@ -37,7 +38,7 @@ public class InicioVista {
 	private void initialize() {
 		VistaControlador vc = new VistaControlador();
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(InicioVista.class.getResource("/Imagen/je.png")));
+		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(InicioVista.class.getResource("/Imagen/je.png")));
 		frame.setTitle("MusLearn - DAM");
 		frame.getContentPane().setBackground(new Color(238, 238, 238));
 		frame.setBounds(100, 100, 450, 300);
@@ -48,7 +49,7 @@ public class InicioVista {
 		frame.getContentPane().add(verticalStrut);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(InicioVista.class.getResource("/Imagen/je.png")));
+		lblNewLabel.setIcon(new ImageIcon("/Users/sergiomoreno/Documents/workspace/MusLearn/je.png"));
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -65,11 +66,20 @@ public class InicioVista {
 		Component verticalGlue = Box.createVerticalGlue();
 		frame.getContentPane().add(verticalGlue);
 		
-		JButton goMain = new JButton("Ir a la APP");
-		//Método hecho en el controlador de esta vista la cual te lleva a otra.
-		vc.goMain(goMain);
-		goMain.setAlignmentX(Component.CENTER_ALIGNMENT);
-		frame.getContentPane().add(goMain);
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel);
+		
+		JButton goMain = new JButton("Video & Letras");
+		panel.add(goMain);
+		vc.goLetra(goMain);
+
+		JButton ranking = new JButton("Estadisticas");
+		panel.add(ranking);
+		vc.goRanking(ranking);
+		
+		JButton addletra = new JButton("Añadir letras");
+		panel.add(addletra);
+		vc.goMain(addletra);
 	}
 
 }
