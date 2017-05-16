@@ -43,6 +43,7 @@ public class VistaControlador {
 			public void actionPerformed(ActionEvent e) {
 				LyricsVista window = new LyricsVista();
 				window.frame.setVisible(true);
+               // new MyFrame().setVisible(true);
 			}
 		});
 	}
