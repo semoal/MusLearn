@@ -78,13 +78,14 @@ public class LyricsVista {
         textArea_1.setEnabled(false);
         textArea_1.setEditable(false);
         scrollPane.setViewportView(textArea_1);
-       
+
         JPanel panel_3 = new JPanel();
         panel_2.add(panel_3);
         
         JButton btnExportar = new JButton("Exportar");
         panel_3.add(btnExportar);
         
+
         JTextArea textArea = new JTextArea();
         panel.add(textArea, BorderLayout.EAST);
         frame.setSize(700, 500);
