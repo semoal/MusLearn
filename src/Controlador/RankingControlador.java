@@ -12,10 +12,10 @@ import Vista.InicioVista;
 public class RankingControlador {
 	
 	
-	public void volverMain(JButton button, JFrame x){
+	public void volverMain(JButton button, JFrame frame){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				x.dispose();
+				frame.dispose();
 			}
 		});	
 	}

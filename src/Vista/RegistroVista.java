@@ -30,21 +30,6 @@ public class RegistroVista extends JFrame {
         private JTextField textFieldUser;
         private JPasswordField passwordField_1;
  
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    RegistroVista frame = new RegistroVista();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
  
     /**
      * Create the frame.

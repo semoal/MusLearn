@@ -107,7 +107,7 @@ public class AddLetraVista extends JFrame {
 		lblFalloAlIntroducir = new JLabel("");
 		panel_2.add(lblFalloAlIntroducir);
 		
-		alc.añadirLetra(btnInsertar,textField, textField_1, textArea,lblFalloAlIntroducir);
+		alc.anyadirLetra(btnInsertar,textField, textField_1, textArea,lblFalloAlIntroducir);
 
 		lblFalloAlIntroducir.setAlignmentX(Component.RIGHT_ALIGNMENT);
 	}
