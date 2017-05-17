@@ -29,6 +29,7 @@ public class RegistroVista extends JFrame {
       private JPanel contentPane;
         private JTextField textFieldUser;
         private JPasswordField passwordField_1;
+        private JPasswordField passwordField_2;
  
     /**
      * Launch the application.
@@ -57,15 +58,25 @@ public class RegistroVista extends JFrame {
             contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
             setContentPane(contentPane);
             contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+            
+            JPanel panel_2 = new JPanel();
+            contentPane.add(panel_2);
+             panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
+            
+             JLabel lblMensaje = new JLabel("Escribe tus credenciales");
+             panel_2.add(lblMensaje);
+            
+            Component verticalStrut_8 = Box.createVerticalStrut(20);
+            contentPane.add(verticalStrut_8);
+            
+            Component verticalStrut_9 = Box.createVerticalStrut(20);
+            contentPane.add(verticalStrut_9);
            
             JPanel panel = new JPanel();
             contentPane.add(panel);
            
-            JLabel lblMensaje = new JLabel("Formulario para registrarse");
-            panel.add(lblMensaje);
-           
             JPanel panel_1 = new JPanel();
-            contentPane.add(panel_1);
+            panel.add(panel_1);
             panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
            
             JPanel panel_3 = new JPanel();
@@ -113,17 +124,56 @@ public class RegistroVista extends JFrame {
            
             JPanel panel_4 = new JPanel();
             panel_1.add(panel_4);
-           
-            JPanel panel_2 = new JPanel();
-            FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-            flowLayout.setAlignment(FlowLayout.RIGHT);
-            contentPane.add(panel_2);
-           
-            JButton btnVolver = new JButton("Volver");
-            panel_2.add(btnVolver);
-           
-            JButton btnRegistrarse = new JButton("Registrarse");
-            panel_2.add(btnRegistrarse);
+            
+            JLabel lblVuelveAEscribir = new JLabel("Repite contrase\u00F1a:");
+            panel_4.add(lblVuelveAEscribir);
+            
+            passwordField_2 = new JPasswordField();
+            passwordField_2.setColumns(20);
+            panel_4.add(passwordField_2);
+            
+            Component verticalStrut_7 = Box.createVerticalStrut(20);
+            panel_4.add(verticalStrut_7);
+            
+            Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+            panel_4.add(horizontalStrut_2);
+            
+            Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+            panel_4.add(horizontalStrut_1);
+            
+            Component verticalStrut_6 = Box.createVerticalStrut(20);
+            panel_4.add(verticalStrut_6);
+            
+            Component verticalStrut_5 = Box.createVerticalStrut(20);
+            panel_4.add(verticalStrut_5);
+            
+            JPanel panel_7 = new JPanel();
+            contentPane.add(panel_7);
+             panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
+             
+             Component horizontalGlue = Box.createHorizontalGlue();
+             panel_7.add(horizontalGlue);
+             
+             Component horizontalGlue_1 = Box.createHorizontalGlue();
+             panel_7.add(horizontalGlue_1);
+             
+             Component horizontalGlue_2 = Box.createHorizontalGlue();
+             panel_7.add(horizontalGlue_2);
+             
+             Component horizontalGlue_3 = Box.createHorizontalGlue();
+             panel_7.add(horizontalGlue_3);
+             
+             Component horizontalGlue_4 = Box.createHorizontalGlue();
+             panel_7.add(horizontalGlue_4);
+            
+             JButton btnVolver = new JButton("Volver");
+             panel_7.add(btnVolver);
+              
+              Component horizontalGlue_5 = Box.createHorizontalGlue();
+              panel_7.add(horizontalGlue_5);
+             
+              JButton btnRegistrarse = new JButton("Registrarse");
+              panel_7.add(btnRegistrarse);
         }
      
     }
