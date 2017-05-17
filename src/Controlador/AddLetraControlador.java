@@ -54,7 +54,7 @@ public class AddLetraControlador {
 		Conexion cn = new Conexion();
     	Statement stmt;
 		try {
-			String sql = "INSERT INTO letras (idUsuario, titulo, artista, letra,fechainsercion) VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO Letras (idUsuario, titulo, artista, letra,fechainsercion) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
 			preparedStatement.setInt(1, 1);
 			preparedStatement.setString(2, lm.getTitulo());

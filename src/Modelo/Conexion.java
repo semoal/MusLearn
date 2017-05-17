@@ -14,7 +14,7 @@ public class Conexion {
 			System.err.println(e);
 		}
 		try{
-			String cadenaDeConnexio = "jdbc:mysql://localhost/xdd?user=root&password=";
+			String cadenaDeConnexio = "jdbc:mysql://54.186.208.69/proyecto?user=admin&password=admin";
 			conexion= DriverManager.getConnection(cadenaDeConnexio);
 		}catch(Exception e){
 			System.err.println("Error connectant a mysql/educa amb user=root");
