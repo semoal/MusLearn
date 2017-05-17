@@ -42,11 +42,11 @@ public class LyricsVista {
 
 	private void initialize() {
 		LyricsControlador lc = new LyricsControlador();
-        Browser browser = new Browser();
-        BrowserView view = new BrowserView(browser);
+        //Browser browser = new Browser();
+        //BrowserView view = new BrowserView(browser);
 
         JPanel panel = new JPanel(new BorderLayout());
-        panel.add(view, BorderLayout.CENTER);
+        //panel.add(view, BorderLayout.CENTER);
 
         JFrame frame = new JFrame();
         frame.setTitle("MusLearn - Lyrics and a lot of more");
@@ -78,12 +78,12 @@ public class LyricsVista {
         textArea_1.setEditable(false);
         scrollPane.setViewportView(textArea_1);
         
-       // JTextArea textArea = new JTextArea();
-        //panel.add(textArea, BorderLayout.EAST);
+        JTextArea textArea = new JTextArea();
+        panel.add(textArea, BorderLayout.EAST);
         frame.setSize(700, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         
-        lc.ejecutaTodo(btnNewButton,textField_2,textArea_1,panel,browser);
+        //lc.ejecutaTodo(btnNewButton,textField_2,textArea_1,panel,browser);
 	}
 }

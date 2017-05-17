@@ -20,7 +20,7 @@ import Modelo.LetraModel;
 public class AddLetraControlador {
 	private boolean ok;
 	
-	public void añadirLetra(JButton button,JTextField titulo,JTextField artista ,JTextArea letra,JLabel error){
+	public void anyadirLetra(JButton button,JTextField titulo,JTextField artista ,JTextArea letra,JLabel error){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!titulo.getText().isEmpty() && !artista.getText().isEmpty() && !letra.getText().isEmpty()){
