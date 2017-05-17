@@ -28,6 +28,7 @@ import java.awt.Dimension;
 import javax.swing.JTextPane;
 import javax.swing.JSplitPane;
 import javax.swing.JEditorPane;
+import java.awt.FlowLayout;
 
 public class LyricsVista {
 
@@ -65,9 +66,9 @@ public class LyricsVista {
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         
         JPanel panel_2 = new JPanel();
-        frame.getContentPane().add(panel_2, BorderLayout.SOUTH);
-        panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
-        panel_2.setPreferredSize(new Dimension(150,150));
+        frame.getContentPane().add(panel_2, BorderLayout.EAST);
+        panel_2.setPreferredSize(new Dimension(300,150));
+        panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         
         JScrollPane scrollPane = new JScrollPane();
         panel_2.add(scrollPane);
@@ -78,8 +79,14 @@ public class LyricsVista {
         textArea_1.setEditable(false);
         scrollPane.setViewportView(textArea_1);
         
-       // JTextArea textArea = new JTextArea();
-        //panel.add(textArea, BorderLayout.EAST);
+        JPanel panel_3 = new JPanel();
+        panel_2.add(panel_3);
+        
+        JButton btnExportar = new JButton("Exportar");
+        panel_3.add(btnExportar);
+        
+        JTextArea textArea = new JTextArea();
+        panel.add(textArea, BorderLayout.EAST);
         frame.setSize(700, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

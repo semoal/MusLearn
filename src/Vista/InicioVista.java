@@ -71,8 +71,9 @@ public class InicioVista {
 		
 		JButton goMain = new JButton("Video & Letras");
 		panel.add(goMain);
+		
 		vc.goLetra(goMain);
-
+		
 		JButton ranking = new JButton("Estadisticas");
 		panel.add(ranking);
 		vc.goRanking(ranking);
