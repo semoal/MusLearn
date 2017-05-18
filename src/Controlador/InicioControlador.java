@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import Modelo.UsuarioModel;
 import Vista.AddLetraVista;
 import Vista.LyricsVista;
 import Vista.RankingView;
@@ -15,12 +16,17 @@ public class InicioControlador {
 	 * @param goMain recibe elJButton que va a ser clickeado
 	 */
 	public void goMain(JButton addLetra){
-		addLetra.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AddLetraVista frame = new AddLetraVista();
-				frame.setVisible(true);
-			}
-		});
+		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){
+			//no puede darle a este boton
+			addLetra.setEnabled(false);
+		}else{
+			addLetra.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					AddLetraVista frame = new AddLetraVista();
+					frame.setVisible(true);
+				}
+			});
+		}
 	}
 	/**
 	 * Función que dirige al usuario a la ventana de estadisticas
@@ -44,6 +50,6 @@ public class InicioControlador {
 				LyricsVista window = new LyricsVista();
 				window.frame.setVisible(true);
 			}
-		});
+		});	
 	}
 }

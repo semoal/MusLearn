@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import Modelo.Conexion;
 import Modelo.UsuarioModel;
+import Vista.AccesoVista;
 import Vista.InicioVista;
 import Vista.LoginVista;
 
@@ -20,16 +22,17 @@ public class LoginControlador {
 	private String usuario;
 	private String pwd;
 	
-	public void ejecutaTodo(JButton button,JTextField user,JTextField password,JLabel error){
+	public void ejecutaTodo(JButton button,JTextField user,JTextField password,JLabel error,JFrame frame){
 		button.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent e) {
-		  		if(!user.getText().isEmpty() && !password.getText().isEmpty()){
+	  			if(!user.getText().isEmpty()){
+	  				frame.dispose();
 		  			usuario = user.getText();
 		  			pwd = password.getText();
 		  			consultaBD(error);
 		  		}else{
 		  			error.setText("Status: falta algun campo por introducir");
-		  		}
+		  		}	
 		  	}
 		  });
 	}
@@ -70,6 +73,16 @@ public class LoginControlador {
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void volverAcceso(JButton button,JFrame x){
+		button.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		AccesoVista window = new AccesoVista();
+				window.frame.setVisible(true);
+		  		x.dispose();
+		  	}
+		  });
 	}
 }
 

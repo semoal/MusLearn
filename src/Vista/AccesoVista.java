@@ -1,6 +1,7 @@
 package Vista;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -36,7 +37,13 @@ public class AccesoVista {
 	private void initialize() {
 		AccesoControlador ac = new AccesoControlador();
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+	    frame.pack();
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    int height = screenSize.height;
+	    int width = screenSize.width;
+	    frame.setSize(width/2, height/2);
+	    frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -44,21 +51,21 @@ public class AccesoVista {
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		
 		JButton btnAcceder = new JButton("Acceder");
-		ac.irAcceder(btnAcceder);
+		ac.irAcceder(btnAcceder,frame);
 		panel.add(btnAcceder);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		panel.add(horizontalStrut);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
-		ac.irRegistro(btnRegistrarse);
+		ac.irRegistro(btnRegistrarse,frame);
 		panel.add(btnRegistrarse);
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		panel.add(horizontalStrut_1);
 		
 		JButton btnInvitado = new JButton("Invitado");
-		ac.irInvitado(btnInvitado);
+		ac.irInvitado(btnInvitado,frame);
 		panel.add(btnInvitado);
 		
 		JPanel panel_1 = new JPanel();

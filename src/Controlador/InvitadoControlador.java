@@ -9,10 +9,13 @@ import java.sql.Statement;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import Modelo.Conexion;
 import Modelo.UsuarioModel;
+import Vista.AccesoVista;
+import Vista.InvitadoVista;
 
 public class InvitadoControlador {
 
@@ -61,6 +64,17 @@ public class InvitadoControlador {
 			e.printStackTrace();
 			this.ok = false;
 		}
+	}
+	
+	//Método para volver a acceso
+	public void volverAcceso(JButton button,JFrame x){
+		button.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		AccesoVista window = new AccesoVista();
+				window.frame.setVisible(true);
+		  		x.dispose();
+		  	}
+		  });
 	}
 	
 }

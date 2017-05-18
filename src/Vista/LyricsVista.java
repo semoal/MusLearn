@@ -2,6 +2,7 @@ package Vista;
 
 import java.awt.EventQueue;
 import java.awt.Point;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
@@ -45,12 +46,17 @@ public class LyricsVista {
 		LyricsControlador lc = new LyricsControlador();
         Browser browser = new Browser();
         BrowserView view = new BrowserView(browser);
-
+        frame = new JFrame();
+	    frame.pack();
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    int height = screenSize.height;
+	    int width = screenSize.width;
+	    frame.setSize(width/2, height/2);
+	    frame.setLocationRelativeTo(null);
+        frame.setTitle("MusLearn - Lyrics and a lot of more");
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(view, BorderLayout.CENTER);
-
-        JFrame frame = new JFrame();
-        frame.setTitle("MusLearn - Lyrics and a lot of more");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         JPanel panel_1 = new JPanel();

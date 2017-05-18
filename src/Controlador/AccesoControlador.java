@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import Modelo.UsuarioModel;
 import Vista.InvitadoVista;
@@ -13,27 +14,31 @@ import Vista.RegistroVista;
 
 public class AccesoControlador {
 
-	public void irAcceder(JButton button){
+	public void irAcceder(JButton button,JFrame x){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoginVista lc = new LoginVista();
-				lc.setVisible(true);
+				lc.frame.setVisible(true);
+				x.dispose();
+
 			}
 		});
 	}
-	public void irRegistro(JButton button){
+	public void irRegistro(JButton button,JFrame x){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 RegistroVista frame = new RegistroVista();
-                 frame.setVisible(true);
+                 frame.frame.setVisible(true);
+ 				 x.dispose();
 			}
 		});
 	}
-	public void irInvitado(JButton button){
+	public void irInvitado(JButton button,JFrame x){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InvitadoVista frame = new InvitadoVista();
-				frame.setVisible(true);
+				frame.frame.setVisible(true);
+				x.dispose();
 			}
 		});
 	}

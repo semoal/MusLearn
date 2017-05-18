@@ -13,13 +13,17 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class InvitadoVista extends JFrame {
-
+public class InvitadoVista{
+	public JFrame frame;
 	private JPanel contentPane;
 	private JTextField textField;
 	private Component verticalStrut;
@@ -41,13 +45,19 @@ public class InvitadoVista extends JFrame {
 	 */
 	public InvitadoVista() {
 		InvitadoControlador ic = new InvitadoControlador();
-		
-		setTitle("MusLearn - Sesi\u00F3n Invitado");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		frame = new JFrame();
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = screenSize.height;
+		int width = screenSize.width;
+		frame.setSize(width/2, height/2);
+		frame.setLocationRelativeTo(null);
+		frame.setTitle("MusLearn - Sesi\u00F3n Invitado");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		frame.setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
 		verticalStrut = Box.createVerticalStrut(20);
@@ -97,6 +107,7 @@ public class InvitadoVista extends JFrame {
 		
 		btnVolver = new JButton("Volver");
 		panel_2.add(btnVolver);
+		ic.volverAcceso(btnVolver,frame);
 		
 		ic.creaInvitado(btnContinuar,textField);
 	}

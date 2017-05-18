@@ -9,6 +9,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -16,6 +17,7 @@ import com.mysql.jdbc.Statement;
 
 import Modelo.Conexion;
 import Modelo.UsuarioModel;
+import Vista.AccesoVista;
 
 public class RegistroControlador {
 	private boolean ok = false;
@@ -74,5 +76,15 @@ public class RegistroControlador {
 		} catch (SQLException e) {
 		   this.ok = false;
 		}
+	}
+	//Método para volver a acceso
+	public void volverAcceso(JButton button,JFrame x){
+		button.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		AccesoVista window = new AccesoVista();
+				window.frame.setVisible(true);
+		  		x.dispose();
+		  	}
+		  });
 	}
 }

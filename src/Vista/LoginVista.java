@@ -15,18 +15,20 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginVista extends JFrame {
-
- //private JPanel contentPane;
+public class LoginVista{
+	public JFrame frame;
  private JTextField textField;
  private JPasswordField passwordField;
  private JPanel contentPane;
@@ -39,12 +41,21 @@ public class LoginVista extends JFrame {
   */
  public LoginVista() {
   LoginControlador lg = new LoginControlador();
-  setTitle("MusLearn - Login");
-  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  setBounds(100, 100, 450, 300);
+  frame = new JFrame();
+  frame.pack();
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+  int height = screenSize.height;
+  int width = screenSize.width;
+  frame.setSize(width/2, height/2);
+  frame.setLocationRelativeTo(null);
+  
+  frame.setTitle("MusLearn - Login");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  
   contentPane = new JPanel();
   contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-  setContentPane(contentPane);
+  frame.setContentPane(contentPane);
   contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
   JPanel panel_2 = new JPanel();
@@ -137,14 +148,15 @@ public class LoginVista extends JFrame {
 
   JButton btnVolver = new JButton("Volver");
   panel_7.add(btnVolver);
-
+  lg.volverAcceso(btnVolver,frame);
+  
   Component horizontalGlue_5 = Box.createHorizontalGlue();
   panel_7.add(horizontalGlue_5);
 
   JButton btnRegistrarse = new JButton("Iniciar sesión");
   panel_7.add(btnRegistrarse);
   //Botón de iniciar sesion
-  lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus);
+  lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus,frame);
   
  }
 

@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +26,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
 public class RankingView {
 
@@ -44,7 +47,13 @@ public class RankingView {
 	private void initialize() {
 		RankingControlador rk = new RankingControlador();
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+	    frame.pack();
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    int height = screenSize.height;
+	    int width = screenSize.width;
+	    frame.setSize(width/2, height/2);
+	    frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		

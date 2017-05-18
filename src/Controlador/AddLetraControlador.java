@@ -16,6 +16,7 @@ import com.mysql.jdbc.Statement;
 
 import Modelo.Conexion;
 import Modelo.LetraModel;
+import Modelo.UsuarioModel;
 
 public class AddLetraControlador {
 	private boolean ok;
@@ -40,7 +41,7 @@ public class AddLetraControlador {
 	public void creaLetra(JTextField titulo,JTextField artista ,JTextArea letra){
 		LetraModel lm = new LetraModel();
 		//USUARIO QUE INTRODUCE LA LETRA 
-		lm.setIdUsuario(1);
+		lm.setIdUsuario(UsuarioModel.getUser().getidUsuario());
 		lm.setTitulo(titulo.getText());
 		lm.setArtista(artista.getText());
 		lm.setLetra(letra.getText());
@@ -55,7 +56,7 @@ public class AddLetraControlador {
 		try {
 			String sql = "INSERT INTO Letras (idUsuario, titulo, artista, letra,fechainsercion) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
-			preparedStatement.setInt(1, 1);
+			preparedStatement.setInt(1, UsuarioModel.getUser().getidUsuario());
 			preparedStatement.setString(2, lm.getTitulo());
 			preparedStatement.setString(3,lm.getArtista());
 			preparedStatement.setString(4, lm.getLetra());

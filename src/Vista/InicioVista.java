@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -42,7 +44,13 @@ public class InicioVista {
 		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(InicioVista.class.getResource("/Imagen/je.png")));
 		frame.setTitle("MusLearn - DAM");
 		frame.getContentPane().setBackground(new Color(238, 238, 238));
-		frame.setBounds(100, 100, 450, 300);
+	    frame.pack();
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    int height = screenSize.height;
+	    int width = screenSize.width;
+	    frame.setSize(width/2, height/2);
+	    frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		
