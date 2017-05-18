@@ -38,6 +38,7 @@ public class InvitadoControlador {
 	public void invitado(JTextField alias){
 		UsuarioModel us = new UsuarioModel();
 		us.setAlias(alias.getText());
+		us.setPassword("");
 		us.setRol("invitado");
 		us.setFecharegistro(new Date());
 		insertInvitado(us);
@@ -48,10 +49,12 @@ public class InvitadoControlador {
 		Conexion cn = new Conexion();
     	Statement stmt;
 		try {
-			String sql = "INSERT INTO usuarios (alias, rol, fechainsercion) VALUES (?, invitado, ?)";
+			String sql = "INSERT INTO Usuarios (usuario,contrasenya, rol, fecharegistro) VALUES (?, ?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
 			preparedStatement.setString(1, us.getAlias());
-			preparedStatement.setDate(3, new java.sql.Date(us.getFecharegistro().getTime()));
+			preparedStatement.setString(2, us.getPassword());
+			preparedStatement.setString(3, us.getRol());
+			preparedStatement.setDate(4, new java.sql.Date(us.getFecharegistro().getTime()));
 			preparedStatement.executeUpdate(); 
 			this.ok = true;
 		} catch (SQLException e) {

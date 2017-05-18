@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import Vista.InvitadoVista;
+import Vista.LyricsVista;
 import Vista.RegistroVista;
 
 public class AccesoControlador {
@@ -13,7 +14,8 @@ public class AccesoControlador {
 	public void irAcceder(JButton button){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("acceder");
+				LyricsVista lc = new LyricsVista();
+				lc.frame.setVisible(true);
 			}
 		});
 	}

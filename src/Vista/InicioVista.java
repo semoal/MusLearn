@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-import Controlador.VistaControlador;
+import Controlador.InicioControlador;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -36,7 +36,7 @@ public class InicioVista {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		VistaControlador vc = new VistaControlador();
+		InicioControlador vc = new InicioControlador();
 		frame = new JFrame();
 		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(InicioVista.class.getResource("/Imagen/je.png")));
 		frame.setTitle("MusLearn - DAM");

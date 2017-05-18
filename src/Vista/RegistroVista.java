@@ -7,6 +7,9 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.RegistroControlador;
+
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -36,6 +39,7 @@ public class RegistroVista extends JFrame {
      * Create the frame.
      */
     public RegistroVista() {
+    	RegistroControlador rg = new RegistroControlador();
         setTitle("MusLearn - Registro");
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(100, 100, 450, 300);
@@ -159,6 +163,7 @@ public class RegistroVista extends JFrame {
              
               JButton btnRegistrarse = new JButton("Registrarse");
               panel_7.add(btnRegistrarse);
+              rg.creaUsuario(btnRegistrarse, textFieldUser, passwordField_1, passwordField_2, lblMensaje);
         }
      
     }

@@ -16,13 +16,13 @@ import javax.swing.border.EmptyBorder;
 
 import Vista.AccesoVista;
 
-public class Splash extends JFrame {
+public class SplashVista extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblPorcentaje;
 	private JProgressBar barraDeProgreso;
 
 
-	public Splash() {
+	public SplashVista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

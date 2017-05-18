@@ -61,8 +61,11 @@ public class LyricsVista {
         panel_1.add(textField_2);
         textField_2.setColumns(10);
         
-        JButton btnNewButton = new JButton("Buscar y exportar");
+        JButton btnNewButton = new JButton("Buscar");
         panel_1.add(btnNewButton);
+        
+        JButton btnExportar = new JButton("Exportar");
+        panel_1.add(btnExportar);
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         
         JPanel panel_2 = new JPanel();
@@ -75,15 +78,13 @@ public class LyricsVista {
     
 
         JTextArea textArea_1 = new JTextArea();
-        textArea_1.setEnabled(false);
+        textArea_1.setRows(25);
+        textArea_1.setColumns(24);
         textArea_1.setEditable(false);
         scrollPane.setViewportView(textArea_1);
-
-        JPanel panel_3 = new JPanel();
-        panel_2.add(panel_3);
         
-        JButton btnExportar = new JButton("Exportar");
-        panel_3.add(btnExportar);
+        JLabel lblStatus = new JLabel("Status: ");
+        panel_2.add(lblStatus);
         
 
         JTextArea textArea = new JTextArea();
@@ -91,7 +92,9 @@ public class LyricsVista {
         frame.setSize(700, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        
+        //Boton de exportar
+        lc.exportarText(btnExportar, textArea_1,lblStatus);
+        //boTON DE BUSCAR EN LA API
         lc.ejecutaTodo(btnNewButton,textField_2,textArea_1,panel,browser);
 	}
 }

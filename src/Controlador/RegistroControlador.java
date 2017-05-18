@@ -51,7 +51,7 @@ public class RegistroControlador {
 		us.setAlias(alias.getText());
 		us.setPassword(password.getText());
 		us.setFecharegistro(new Date());
-		us.setRole("registrado");
+		us.setRol("registrado");
 		insertUsuario(us);
 	}
 	//Metodo que haga el insert
@@ -65,7 +65,7 @@ public class RegistroControlador {
 			preparedStatement.setString(1, us.getAlias());
 			preparedStatement.setString(2, us.getPassword());
 			preparedStatement.setDate(3, new java.sql.Date(us.getFecharegistro().getTime()));
-			preparedStatement.setString(4, us.getRole());
+			preparedStatement.setString(4, us.getRol());
 			preparedStatement.executeUpdate(); 
 			this.ok = true;
 		} catch (SQLIntegrityConstraintViolationException e) {

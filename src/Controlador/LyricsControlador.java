@@ -1,7 +1,9 @@
 package Controlador;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -14,8 +16,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+
+import com.mysql.jdbc.Statement;
 import com.omt.lyrics.SearchLyrics;
 import com.omt.lyrics.beans.Lyrics;
 import com.omt.lyrics.beans.LyricsServiceBean;
@@ -24,6 +33,8 @@ import com.omt.lyrics.exception.SearchLyricsException;
 import com.omt.lyrics.util.Sites;
 import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+
+import Modelo.Conexion;
 
 public class LyricsControlador {
 	private String tituloCancionTemp;
@@ -43,7 +54,7 @@ public class LyricsControlador {
 					videoACancion(input,textArea);
 					meteVideo(input,panel,browser);
 					tituloAlyrics(tituloCancion,textArea);
-					exportarText(btnBuscar,textArea);
+					busqueda(input);
 				}else{
 					textArea.setText("Url no valida lo siento");
 				}
@@ -51,20 +62,26 @@ public class LyricsControlador {
 		});
 	}
 	/*Boton para exportar a .txt  */
-	public void exportarText(JButton button,JTextArea textArea){
-		String fichero = this.tituloCancion[0]+"-"+this.tituloCancion[1]+".txt";
-		File x = new File(fichero);
-		if(!x.exists()){
-			try {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));
-				bw.write(textArea.getText());
-				bw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+	public void exportarText(JButton button,JTextArea textArea, JLabel label){
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String fichero = tituloCancion[0]+"-"+tituloCancion[1]+".txt";
+				File x = new File(fichero);
+				if(!x.exists()){
+					try {
+						BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));
+						bw.write(textArea.getText());
+						bw.close();
+						label.setText("Status: exportacion correcta");
+					} catch (IOException oy) {
+						oy.printStackTrace();
+						label.setText("Status: exportacion erronea");
+					}
+				}else {
+					label.setText("Status: el archivo ya existe");
+				}
 			}
-		}else {
-			System.out.println("ese fichero ya existe");
-		}
+		});
 		
 	}
 	/*
@@ -151,6 +168,27 @@ public class LyricsControlador {
 			 
 		 } catch (SearchLyricsException e) {
 		 }
+	}
+	
+	public void busqueda(JTextField input){
+
+				ResultSet rs = null;
+				Conexion cn = new Conexion();
+		    	Statement stmt;
+		    	String textoInput = input.getText();
+				try {
+					String sql = "INSERT INTO Busquedas (idUsuario, urlbusqueda,fechaBusqueda) VALUES (?, ?, ?)";
+					PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+					preparedStatement.setInt(1, 1);
+					preparedStatement.setString(2, textoInput);
+					preparedStatement.setDate(3, new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+					preparedStatement.executeUpdate(); 
+				} catch (SQLIntegrityConstraintViolationException z) {
+					
+				} catch (SQLException ok) {
+					
+				}
+			
 	}
 	
 	/* Conversor de texto con caracteres especiales para la api */
