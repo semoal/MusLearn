@@ -12,6 +12,7 @@ import Controlador.RegistroControlador;
 
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Component;
@@ -125,56 +126,55 @@ public class RegistroVista{
 	    panel_1.add(panel_4);
 	    
 	    JLabel lblVuelveAEscribir = new JLabel("Repite contrase\u00F1a:");
-	panel_4.add(lblVuelveAEscribir);
+	    panel_4.add(lblVuelveAEscribir);
 	
-	passwordField_2 = new JPasswordField();
-	passwordField_2.setColumns(20);
-	panel_4.add(passwordField_2);
-	
-	Component verticalStrut_7 = Box.createVerticalStrut(20);
-	panel_4.add(verticalStrut_7);
-	
-	Component horizontalStrut_2 = Box.createHorizontalStrut(20);
-	panel_4.add(horizontalStrut_2);
-	
-	Component horizontalStrut_1 = Box.createHorizontalStrut(20);
-	panel_4.add(horizontalStrut_1);
-	
-	Component verticalStrut_6 = Box.createVerticalStrut(20);
-	panel_4.add(verticalStrut_6);
-	
-	Component verticalStrut_5 = Box.createVerticalStrut(20);
-	panel_4.add(verticalStrut_5);
-	
-	JPanel panel_7 = new JPanel();
-	contentPane.add(panel_7);
-	 panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
-	 
-	 Component horizontalGlue = Box.createHorizontalGlue();
-	 panel_7.add(horizontalGlue);
-	 
-	 Component horizontalGlue_1 = Box.createHorizontalGlue();
-	 panel_7.add(horizontalGlue_1);
-	 
-	 Component horizontalGlue_2 = Box.createHorizontalGlue();
-	 panel_7.add(horizontalGlue_2);
-	 
-	 Component horizontalGlue_3 = Box.createHorizontalGlue();
-	 panel_7.add(horizontalGlue_3);
-	 
-	 Component horizontalGlue_4 = Box.createHorizontalGlue();
-	 panel_7.add(horizontalGlue_4);
-	
-	 JButton btnVolver = new JButton("Volver");
-	 panel_7.add(btnVolver);
-	 rg.volverAcceso(btnVolver, frame);
+		passwordField_2 = new JPasswordField();
+		passwordField_2.setColumns(20);
+		panel_4.add(passwordField_2);
+		
+		Component verticalStrut_7 = Box.createVerticalStrut(20);
+		panel_4.add(verticalStrut_7);
+		
+		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		panel_4.add(horizontalStrut_2);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		panel_4.add(horizontalStrut_1);
+		
+		Component verticalStrut_6 = Box.createVerticalStrut(20);
+		panel_4.add(verticalStrut_6);
+		
+		Component verticalStrut_5 = Box.createVerticalStrut(20);
+		panel_4.add(verticalStrut_5);
+		
+		JPanel panel_7 = new JPanel();
+		contentPane.add(panel_7);
+		 panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
+		 
+		 Component horizontalGlue = Box.createHorizontalGlue();
+		 panel_7.add(horizontalGlue);
+		 
+		 Component horizontalGlue_1 = Box.createHorizontalGlue();
+		 panel_7.add(horizontalGlue_1);
+		 
+		 Component horizontalGlue_2 = Box.createHorizontalGlue();
+		 panel_7.add(horizontalGlue_2);
+		 
+		 Component horizontalGlue_3 = Box.createHorizontalGlue();
+		 panel_7.add(horizontalGlue_3);
+		 
+		 Component horizontalGlue_4 = Box.createHorizontalGlue();
+		 panel_7.add(horizontalGlue_4);
+		
+		 JButton btnVolver = new JButton("Volver");
+		 panel_7.add(btnVolver);
+		 rg.volverAcceso(btnVolver, frame);
 	  
-	  Component horizontalGlue_5 = Box.createHorizontalGlue();
-	  panel_7.add(horizontalGlue_5);
-	 
-	  JButton btnRegistrarse = new JButton("Registrarse");
-	  panel_7.add(btnRegistrarse);
-	  rg.creaUsuario(btnRegistrarse, textFieldUser, passwordField_1, passwordField_2, lblMensaje);
+		 Component horizontalGlue_5 = Box.createHorizontalGlue();
+		 panel_7.add(horizontalGlue_5);
+		 JButton btnRegistrarse = new JButton("Registrarse");
+		 panel_7.add(btnRegistrarse);		 
+		 rg.creaUsuario(btnRegistrarse, textFieldUser, passwordField_1, passwordField_2, lblMensaje);
         }
      
     }

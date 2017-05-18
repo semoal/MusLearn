@@ -37,6 +37,9 @@ import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 
 import Modelo.Conexion;
+import Modelo.LetraModel;
+import Modelo.UsuarioModel;
+import Vista.InicioVista;
 
 public class LyricsControlador {
 	private String tituloCancionTemp;
@@ -152,8 +155,8 @@ public class LyricsControlador {
 		 List<Lyrics> lyrics;
 		 try {
 			 if(this.tituloCancion.length>1){
-				 bean.setSongName(this.tituloCancion[1]);
-				 bean.setSongArtist(this.tituloCancion[0]);
+				 bean.setSongName(this.tituloCancion[1].trim());
+				 bean.setSongArtist(this.tituloCancion[0].trim());
 			 }else{
 				 textArea.setText("No hemos encontrado letra para esa cancion"); 
 			 }
@@ -165,7 +168,7 @@ public class LyricsControlador {
 				     textArea.setCaretPosition(0);
 				 } 
 			 }else{
-				 textArea.setText("No hemos encontrado letra para esa cancion");
+				 consultaEnLetras(textArea,tituloCancion);
 			 }
 			 
 		 } catch (SearchLyricsException e) {
@@ -191,7 +194,37 @@ public class LyricsControlador {
 		} catch (SQLException ok) {
 			
 		}
-			
+	}
+	//Consultamos si en nuestra base de datos tenemos una letra para la cancion que se ha buscado y no se encuentra en la api
+	public void consultaEnLetras(JTextArea textarea, String[] tituloCancion){
+		ResultSet rs = null;
+		Conexion con = Conexion.getCon();
+	    PreparedStatement stmt;
+	    String query = "SELECT * FROM `Letras` where artista like ? and titulo like ? LIMIT 1";
+		try {
+			stmt = con.getConexion().prepareStatement(query);
+			stmt.setString(1, this.tituloCancion[0].trim());
+			stmt.setString(2, this.tituloCancion[1].trim());
+			rs = stmt.executeQuery();
+			if(rs.next()){
+				creaObjeto(rs,textarea);
+			}else{
+	  			textarea.setText("La letra no existe, puedes añadirla si lo deseas");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	//Insertamos la letra que hemos consultado en la base de datos en el textarea
+	public void creaObjeto(ResultSet rs,JTextArea textArea){
+    	LetraModel letra = new LetraModel();
+        try {
+        	letra.setLetra(rs.getString("letra"));
+        	textArea.setText(letra.getLetra());
+		    textArea.setCaretPosition(0);
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* Conversor de texto con caracteres especiales para la api */

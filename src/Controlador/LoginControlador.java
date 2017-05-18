@@ -26,7 +26,6 @@ public class LoginControlador {
 		button.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent e) {
 	  			if(!user.getText().isEmpty()){
-	  				frame.dispose();
 		  			usuario = user.getText();
 		  			pwd = password.getText();
 		  			consultaBD(error);

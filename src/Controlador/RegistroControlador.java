@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ import com.mysql.jdbc.Statement;
 import Modelo.Conexion;
 import Modelo.UsuarioModel;
 import Vista.AccesoVista;
+import Vista.RegistroVista;
 
 public class RegistroControlador {
 	private boolean ok = false;
@@ -69,6 +71,7 @@ public class RegistroControlador {
 			preparedStatement.setDate(3, new java.sql.Date(us.getFecharegistro().getTime()));
 			preparedStatement.setString(4, us.getRol());
 			preparedStatement.executeUpdate(); 
+			
 			this.ok = true;
 		} catch (SQLIntegrityConstraintViolationException e) {
 		   this.ok = false;

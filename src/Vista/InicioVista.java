@@ -23,6 +23,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
+import javax.swing.JMenuBar;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 public class InicioVista {
 
@@ -53,6 +57,25 @@ public class InicioVista {
 	    frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+		
+		JPanel panel_1 = new JPanel();
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
+		
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		panel_1.add(horizontalStrut);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		panel_1.add(horizontalStrut_1);
+		
+		JButton button = new JButton("Perfil");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PerfilVista window = new PerfilVista();
+				window.frame.setVisible(true);
+			}
+		});
+		frame.getContentPane().add(button);
 		
 		Component verticalStrut = Box.createVerticalStrut(20);
 		frame.getContentPane().add(verticalStrut);
