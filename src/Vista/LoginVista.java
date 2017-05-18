@@ -7,6 +7,9 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.LoginControlador;
+
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -35,6 +38,7 @@ public class LoginVista extends JFrame {
   * Create the frame.
   */
  public LoginVista() {
+  LoginControlador lg = new LoginControlador();
   setTitle("MusLearn - Login");
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   setBounds(100, 100, 450, 300);
@@ -105,6 +109,12 @@ public class LoginVista extends JFrame {
 
   Component verticalStrut = Box.createVerticalStrut(20);
   panel_6.add(verticalStrut);
+  
+  JPanel panel_4 = new JPanel();
+  contentPane.add(panel_4);
+  
+  JLabel lblStatus = new JLabel("Status: ");
+  panel_4.add(lblStatus);
 
   JPanel panel_7 = new JPanel();
   contentPane.add(panel_7);
@@ -133,6 +143,9 @@ public class LoginVista extends JFrame {
 
   JButton btnRegistrarse = new JButton("Iniciar sesión");
   panel_7.add(btnRegistrarse);
+  //Botón de iniciar sesion
+  lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus);
+  
  }
 
 }

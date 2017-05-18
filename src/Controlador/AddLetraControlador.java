@@ -41,7 +41,6 @@ public class AddLetraControlador {
 		LetraModel lm = new LetraModel();
 		//USUARIO QUE INTRODUCE LA LETRA 
 		lm.setIdUsuario(1);
-		//NECESITAREMOS QUE LA COJA DE ALGUN LADO EN EL MOMENTO QUE EL USUARIO HACE LOGIN
 		lm.setTitulo(titulo.getText());
 		lm.setArtista(artista.getText());
 		lm.setLetra(letra.getText());
@@ -51,8 +50,8 @@ public class AddLetraControlador {
 	
 	public void insertaLetra(LetraModel lm){
 		ResultSet rs = null;
-		Conexion cn = new Conexion();
-    	Statement stmt;
+		Conexion cn = Conexion.getCon();
+		Statement stmt;
 		try {
 			String sql = "INSERT INTO Letras (idUsuario, titulo, artista, letra,fechainsercion) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);

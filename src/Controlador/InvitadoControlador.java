@@ -46,8 +46,8 @@ public class InvitadoControlador {
 	//Metodo que haga el insert
 	public void insertInvitado(UsuarioModel us){
 		ResultSet rs = null;
-		Conexion cn = new Conexion();
-    	Statement stmt;
+		Conexion cn = Conexion.getCon();
+		Statement stmt;
 		try {
 			String sql = "INSERT INTO Usuarios (usuario,contrasenya, rol, fecharegistro) VALUES (?, ?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);

@@ -20,6 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -169,25 +171,26 @@ public class LyricsControlador {
 		 } catch (SearchLyricsException e) {
 		 }
 	}
-	
+	/*
+	 * Método que realiza un insert de la busqueda que hace el usuario 
+	 */
 	public void busqueda(JTextField input){
-
-				ResultSet rs = null;
-				Conexion cn = new Conexion();
-		    	Statement stmt;
-		    	String textoInput = input.getText();
-				try {
-					String sql = "INSERT INTO Busquedas (idUsuario, urlbusqueda,fechaBusqueda) VALUES (?, ?, ?)";
-					PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
-					preparedStatement.setInt(1, 1);
-					preparedStatement.setString(2, textoInput);
-					preparedStatement.setDate(3, new java.sql.Date(Calendar.getInstance().getTime().getTime()));
-					preparedStatement.executeUpdate(); 
-				} catch (SQLIntegrityConstraintViolationException z) {
-					
-				} catch (SQLException ok) {
-					
-				}
+		ResultSet rs = null;
+		Conexion cn = Conexion.getCon();
+		Statement stmt;
+    	String textoInput = input.getText();
+		try {
+			String sql = "INSERT INTO Busquedas (idUsuario, urlbusqueda,fechaBusqueda) VALUES (?, ?, ?)";
+			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			preparedStatement.setInt(1, 1);
+			preparedStatement.setString(2, textoInput);
+			preparedStatement.setDate(3, new java.sql.Date(Calendar.getInstance().getTime().getTime())  );
+			preparedStatement.executeUpdate(); 
+		} catch (SQLIntegrityConstraintViolationException z) {
+			
+		} catch (SQLException ok) {
+			
+		}
 			
 	}
 	

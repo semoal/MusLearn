@@ -57,7 +57,7 @@ public class RegistroControlador {
 	//Metodo que haga el insert
 	public void insertUsuario(UsuarioModel us){
 		ResultSet rs = null;
-		Conexion cn = new Conexion();
+		Conexion cn = Conexion.getCon();
     	Statement stmt;
 		try {
 			String sql = "INSERT INTO Usuarios (usuario, contrasenya,fecharegistro,rol) VALUES (?, ?, ?, ?)";

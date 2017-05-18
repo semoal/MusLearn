@@ -96,7 +96,7 @@ public void iniciarHilo(){
 					lblPorcentaje.setText(x+"%");
 					lblPorcentaje.setText(+x+"%");
 					x++;
-					Thread.sleep(100);
+					Thread.sleep(1);
 				}	
 				dispose();
 				AccesoVista window = new AccesoVista();

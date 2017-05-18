@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import Controlador.InicioControlador;
+import Modelo.UsuarioModel;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -56,7 +57,7 @@ public class InicioVista {
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		frame.getContentPane().add(verticalStrut_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("Aplicación que incorpora todas las letras del mercado, y videos..");
+		JLabel lblNewLabel_1 = new JLabel("Aplicación que incorpora todas las letras del mercado, y videos.."+UsuarioModel.getUser().getAlias());
 		lblNewLabel_1.setBackground(new Color(192, 192, 192));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Kohinoor Bangla", Font.PLAIN, 13));

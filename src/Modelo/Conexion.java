@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Conexion {
-
+	public static Conexion con = null;
 	private Connection conexion;
 	
 	public Conexion() {
@@ -22,12 +22,17 @@ public class Conexion {
 	
 	}
 
+	public static Conexion getCon(){
+		if(con==null){
+			con = new Conexion();
+		}
+		return con;
+	}	
 	public Connection getConexion() {
 		return conexion;
 	}
-	public void setConexion(Connection conexion) {
+	private void setConexion(Connection conexion) {
 		this.conexion = conexion;
 	}
-	
 	
 }

@@ -3,20 +3,36 @@ package Modelo;
 import java.util.Date;
 
 public class UsuarioModel {
+	private static UsuarioModel current_user;
+	private int idUsuario;
 	private String alias;
 	private String password;
-	private String salt;
 	private Date fecharegistro;
 	private String rol;
 	
 	public UsuarioModel() {
+		this.idUsuario = 0;
 		this.alias = "";
 		this.password = "";
-		this.salt = "";
 		this.fecharegistro = null;
 		this.rol = "";
 	}
-
+	public static UsuarioModel getUser(){
+		return current_user;
+	}
+	
+	public static void setUser(UsuarioModel user){
+		current_user = user;
+	}
+	
+	public int getidUsuario(){
+		return idUsuario;
+	}
+	
+	public void setIdUsuario(int idUsuario){
+		this.idUsuario = idUsuario;
+	}
+	
 	public String getRol() {
 		return rol;
 	}
@@ -39,14 +55,6 @@ public class UsuarioModel {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 
 	public Date getFecharegistro() {
