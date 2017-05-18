@@ -7,12 +7,22 @@ public class UsuarioModel {
 	private String password;
 	private String salt;
 	private Date fecharegistro;
+	private String rol;
 	
 	public UsuarioModel() {
 		this.alias = "";
 		this.password = "";
 		this.salt = "";
 		this.fecharegistro = null;
+		this.rol = "";
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 	public String getAlias() {

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import Vista.InvitadoVista;
 import Vista.RegistroVista;
 
 public class AccesoControlador {
@@ -27,7 +28,8 @@ public class AccesoControlador {
 	public void irInvitado(JButton button){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("invitado");
+				InvitadoVista frame = new InvitadoVista();
+				frame.setVisible(true);
 			}
 		});
 	}

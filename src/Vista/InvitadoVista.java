@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.InvitadoControlador;
+
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -31,26 +34,14 @@ public class InvitadoVista extends JFrame {
 	private Component verticalStrut_2;
 	private Component verticalStrut_3;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InvitadoVista frame = new InvitadoVista();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
 	public InvitadoVista() {
+		InvitadoControlador ic = new InvitadoControlador();
+		
 		setTitle("MusLearn - Sesi\u00F3n Invitado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -106,6 +97,8 @@ public class InvitadoVista extends JFrame {
 		
 		btnVolver = new JButton("Volver");
 		panel_2.add(btnVolver);
+		
+		ic.creaInvitado(btnContinuar,textField);
 	}
 
 }

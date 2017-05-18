@@ -59,7 +59,6 @@ public class AccesoVista {
 		
 		JButton btnInvitado = new JButton("Invitado");
 		ac.irInvitado(btnInvitado);
-		
 		panel.add(btnInvitado);
 		
 		JPanel panel_1 = new JPanel();
