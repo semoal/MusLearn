@@ -2,14 +2,22 @@ package Controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import Modelo.Conexion;
 import Modelo.UsuarioModel;
@@ -47,11 +55,34 @@ String sql = "SELECT *,count(*) as numero FROM Letras l LEFT JOIN Usuarios u ON 
 		});	
 	}
 	
-	public void exportarPDF(JButton button){
+	public void exportarRank(JButton button,List<String>export,JLabel label){
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Exportar");
+				String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+				String fichero = "ranking-"+timeStamp+".txt";
+				File x = new File(fichero);
+				if(!x.exists()){
+					try {
+						BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));
+						bw.write("Ranking con fecha en: "+timeStamp);
+						bw.newLine();
+						for(int i=0;i<export.size();i++){
+							bw.write(export.get(i));
+							bw.newLine();
+						}
+						bw.newLine();
+						bw.close();
+						label.setText("Status: exportacion correcta");
+					} catch (IOException oy) {
+						oy.printStackTrace();
+						label.setText("Status: exportacion erronea");
+					}
+				}else {
+					label.setText("Status: el archivo ya existe");
+				}
+				
 			}
-		});	
+		});		
 	}
+	
 }

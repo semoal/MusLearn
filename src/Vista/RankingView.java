@@ -66,6 +66,11 @@ public class RankingView {
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel);
 		
+		JLabel lblStatus = new JLabel();
+		lblStatus.setForeground(Color.RED);
+		lblStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
+		frame.getContentPane().add(lblStatus);
+		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
@@ -111,7 +116,7 @@ public class RankingView {
 		//Acción boton volver main
 		rk.volverMain(btnVolver,frame);
 		
-		rk.exportarRank(btnExportar, export);
+		rk.exportarRank(btnExportar, export,lblStatus);
 	}
 
 }
