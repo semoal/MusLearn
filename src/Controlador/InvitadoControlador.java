@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import Modelo.Conexion;
@@ -20,18 +22,19 @@ import Vista.InvitadoVista;
 public class InvitadoControlador {
 
 	private boolean ok = true;
+	private JLabel error;
 	//Método que va realizar todo cuando le de click el usuario
-	public void creaInvitado(JButton button,JTextField alias){
+	public void creaInvitado(JButton button,JTextField alias,JLabel error){
+		this.error = error;
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!alias.getText().isEmpty()){
 					invitado(alias);
 					if(ok){
 						alias.setText("");
-						//error.setText("Letra introducida correctamente");
 					}
 				}else{
-					//error.setText("Falta algún campo por introducir");
+					error.setText("Falta algun campo por introducir");
 				}
 			}
 		});
@@ -60,9 +63,14 @@ public class InvitadoControlador {
 			preparedStatement.setDate(4, new java.sql.Date(us.getFecharegistro().getTime()));
 			preparedStatement.executeUpdate(); 
 			this.ok = true;
-		} catch (SQLException e) {
+			this.error.setText("Perfecto! Ves al login");
+		}catch (SQLIntegrityConstraintViolationException e) {
+		   this.ok = false;
+		   this.error.setText("Usuario con ese nombre ya existe");
+		}catch (SQLException e) {
 			e.printStackTrace();
 			this.ok = false;
+			this.error.setText("Consulta no valida");
 		}
 	}
 	

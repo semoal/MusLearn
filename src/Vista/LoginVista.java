@@ -1,6 +1,7 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
@@ -27,6 +28,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class LoginVista{
 	public JFrame frame;
@@ -150,18 +153,38 @@ public class LoginVista{
 
   Component horizontalGlue_4 = Box.createHorizontalGlue();
   panel_7.add(horizontalGlue_4);
+  JComboBox comboBox = new JComboBox();
+  panel.add(comboBox);
+  comboBox.setModel(new DefaultComboBoxModel(new String[] {"Usuario registrado", "Usuario invitado"}));
+  JButton btnRegistrarse = new JButton("Iniciar sesión");
+  panel_7.add(btnRegistrarse);
+  comboBox.addActionListener(
+          new ActionListener(){
+              public void actionPerformed(ActionEvent e){
+                  JComboBox combo = (JComboBox)e.getSource();
+                  String currentUser = (String)combo.getSelectedItem();
+                  if(currentUser.equalsIgnoreCase("Usuario registrado")){
+                	  passwordField_1.enable();
+                	  passwordField_1.setEnabled(true);
+                	  passwordField_1.setBackground(Color.white);
+                  }else{
+                	  Color greyCustom = Color.decode("#c1c1bf");
+                	  passwordField_1.disable();
+                	  passwordField_1.setText("");
+                	  passwordField_1.setEnabled(false);
+                	  passwordField_1.setBackground(greyCustom);
+                  }
+              }
+          }            
+  );
 
+  //Botón de iniciar sesion
+  lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus,loading,frame);
   JButton btnVolver = new JButton("Volver");
   panel_7.add(btnVolver);
   lg.volverAcceso(btnVolver,frame);
   
-  Component horizontalGlue_5 = Box.createHorizontalGlue();
-  panel_7.add(horizontalGlue_5);
 
-  JButton btnRegistrarse = new JButton("Iniciar sesión");
-  panel_7.add(btnRegistrarse);
-  //Botón de iniciar sesion
-  lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus,loading,frame);
   
  }
 

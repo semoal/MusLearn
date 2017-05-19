@@ -199,6 +199,7 @@ public class LyricsControlador {
 		Conexion cn = Conexion.getCon();
 		Statement stmt;
     	String textoInput = input.getText();
+    	
 		try {
 			String sql = "INSERT INTO Busquedas (idUsuario, urlbusqueda,fechaBusqueda) VALUES (?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);

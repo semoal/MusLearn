@@ -21,6 +21,7 @@ import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class InvitadoVista{
 	public JFrame frame;
@@ -37,6 +38,7 @@ public class InvitadoVista{
 	private JLabel lblAdemsNoPodra;
 	private Component verticalStrut_2;
 	private Component verticalStrut_3;
+	private JLabel error;
 
 
 
@@ -89,6 +91,11 @@ public class InvitadoVista{
 		lblAdemsNoPodra.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contentPane.add(lblAdemsNoPodra);
 		
+		error = new JLabel("");
+		error.setForeground(Color.RED);
+		error.setAlignmentX(Component.CENTER_ALIGNMENT);
+		contentPane.add(error);
+		
 		verticalStrut_2 = Box.createVerticalStrut(20);
 		contentPane.add(verticalStrut_2);
 		
@@ -109,7 +116,7 @@ public class InvitadoVista{
 		panel_2.add(btnVolver);
 		ic.volverAcceso(btnVolver,frame);
 		
-		ic.creaInvitado(btnContinuar,textField);
+		ic.creaInvitado(btnContinuar,textField,error);
 	}
 
 }
