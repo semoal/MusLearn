@@ -12,6 +12,7 @@ import Controlador.LoginControlador;
 
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Component;
@@ -107,6 +108,7 @@ public class LoginVista{
 
   JLabel lblPass = new JLabel("Contrase\u00F1a:");
   panel_6.add(lblPass);
+  
 
   passwordField_1 = new JPasswordField();
   passwordField_1.setColumns(20);
@@ -124,9 +126,12 @@ public class LoginVista{
   JPanel panel_4 = new JPanel();
   contentPane.add(panel_4);
   
-  JLabel lblStatus = new JLabel("Status: ");
+  JLabel loading = new JLabel("Cargando... ", new ImageIcon(LoginVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
+  loading.setVisible(false);
+  panel_4.add(loading);
+  
+  JLabel lblStatus = new JLabel();
   panel_4.add(lblStatus);
-
   JPanel panel_7 = new JPanel();
   contentPane.add(panel_7);
   panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
@@ -156,7 +161,7 @@ public class LoginVista{
   JButton btnRegistrarse = new JButton("Iniciar sesión");
   panel_7.add(btnRegistrarse);
   //Botón de iniciar sesion
-  lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus,frame);
+  lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus,loading,frame);
   
  }
 

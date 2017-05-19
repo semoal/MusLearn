@@ -18,7 +18,7 @@ public class VistaControlador {
 		addLetra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddLetraVista frame = new AddLetraVista();
-				frame.setVisible(true);
+				frame.frame.setVisible(true);
 			}
 		});
 	}

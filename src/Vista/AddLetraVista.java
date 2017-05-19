@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
@@ -24,10 +26,15 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Toolkit;
 
-public class AddLetraVista extends JFrame {
+public class AddLetraVista {
 
 	private JPanel contentPane;
+	public JFrame frame;
 	private JPanel panel_1;
 	private JLabel lblMensaje;
 	private JButton btnInsertar;
@@ -42,28 +49,38 @@ public class AddLetraVista extends JFrame {
 	private Component horizontalStrut_2;
 	private JLabel lblFalloAlIntroducir;
 	private JPanel panel_2;
+	private JButton btnVolver;
 
 	/**
 	 * Create the frame.
 	 */
 	public AddLetraVista() {
 		AddLetraControlador alc = new AddLetraControlador();
-		setResizable(false);
-		setTitle("MusLearn - Letras");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+
+	  frame = new JFrame();
+	  frame.pack();
+	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	  int height = screenSize.height;
+	  int width = screenSize.width;
+	  frame.setSize(width/2, height/2);
+	  frame.setLocationRelativeTo(null);
+	  
+	  frame.setTitle("MusLearn - Letras");
+	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
-		setContentPane(contentPane);
+		frame.setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 230, 140));
 		panel.setBorder(new LineBorder(new Color(238, 232, 170), 4, true));
 		contentPane.add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 2, 0));
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		lblTitulo = new JLabel("Titulo");
 		panel.add(lblTitulo);
+		
+		alc.anyadirLetra(btnInsertar,textField, textField_1, textArea,lblFalloAlIntroducir);
 		
 		textField = new JTextField();
 		panel.add(textField);
@@ -100,16 +117,20 @@ public class AddLetraVista extends JFrame {
 		
 		panel_2 = new JPanel();
 		contentPane.add(panel_2);
+		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
 		
 		btnInsertar = new JButton("Insertar");
 		panel_2.add(btnInsertar);
 		
 		lblFalloAlIntroducir = new JLabel("");
 		panel_2.add(lblFalloAlIntroducir);
-		
-		alc.anyadirLetra(btnInsertar,textField, textField_1, textArea,lblFalloAlIntroducir);
 
 		lblFalloAlIntroducir.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		
+		btnVolver = new JButton("Volver");
+
+		panel_2.add(btnVolver);
+		alc.volver(btnVolver,frame);
 	}
 
 }

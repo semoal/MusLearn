@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import Modelo.Conexion;
 import Modelo.UsuarioModel;
@@ -21,17 +22,35 @@ import Vista.LoginVista;
 public class LoginControlador {
 	private String usuario;
 	private String pwd;
-	
-	public void ejecutaTodo(JButton button,JTextField user,JTextField password,JLabel error,JFrame frame){
+	private boolean done = false;
+	JFrame frame;
+	public void ejecutaTodo(JButton button,JTextField user,JTextField password,JLabel error,JLabel loading,JFrame frame){
+		this.frame = frame;
 		button.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent e) {
-	  			if(!user.getText().isEmpty()){
-		  			usuario = user.getText();
-		  			pwd = password.getText();
-		  			consultaBD(error);
-		  		}else{
-		  			error.setText("Status: falta algun campo por introducir");
-		  		}	
+		  		if(!user.getText().isEmpty()){
+			  		loading.setVisible(true);
+		  		}
+		  		new Thread(new Runnable(){
+				    @Override
+				    public void run(){
+				    	if(!user.getText().isEmpty()){
+				  			usuario = user.getText();
+				  			pwd = password.getText();
+				  			consultaBD(error);
+				  			done = true;
+				  		}else{
+				  			error.setText("Status: falta algun campo por introducir");
+				  		}	
+				       if(done){
+				         SwingUtilities.invokeLater(new Runnable(){
+				             @Override public void run(){
+				                loading.setVisible(false);      
+				           }
+				          });
+				       }
+				    }
+				}).start();
 		  	}
 		  });
 	}
@@ -69,6 +88,8 @@ public class LoginControlador {
 			UsuarioModel.setUser(user);
 			InicioVista iv = new InicioVista();
 			iv.frame.setVisible(true);
+			this.frame.setVisible(false);
+			this.frame.dispose();
         } catch (SQLException e) {
 			e.printStackTrace();
 		}

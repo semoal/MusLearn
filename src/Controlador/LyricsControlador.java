@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.JTextArea;
 
 import java.awt.event.ActionEvent;
@@ -47,22 +48,38 @@ public class LyricsControlador {
 	private String urlYoutube;
 	private String url;
 	private boolean buscar;
+	private boolean done;
 	
 	/*
 	 * Acción del boton que realiza todo lo necesario para sacar el video y las lyrics
 	 */
-	public void ejecutaTodo(JButton btnBuscar,JTextField input,JTextArea textArea,JPanel panel,Browser browser){
+	public void ejecutaTodo(JButton btnBuscar,JTextField input,JTextArea textArea,JPanel panel,Browser browser,JLabel loading){
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				urlAtitulo(input);
-				if(buscar){
-					videoACancion(input,textArea);
-					meteVideo(input,panel,browser);
-					tituloAlyrics(tituloCancion,textArea);
-					busqueda(input);
-				}else{
-					textArea.setText("Url no valida lo siento");
-				}
+			    loading.setVisible(true);
+
+				new Thread(new Runnable(){
+				    @Override
+				    public void run(){
+				    	urlAtitulo(input);
+						if(buscar){
+							videoACancion(input,textArea);
+							meteVideo(input,panel,browser);
+							tituloAlyrics(tituloCancion,textArea);
+							busqueda(input);
+							done = true;
+						}else{
+							textArea.setText("Url no valida lo siento");
+						}
+				       if(done){
+				         SwingUtilities.invokeLater(new Runnable(){
+				             @Override public void run(){
+				                loading.setVisible(false);      
+				           }
+				          });
+				       }
+				    }
+				}).start();
 			}
 		});
 	}
@@ -185,14 +202,15 @@ public class LyricsControlador {
 		try {
 			String sql = "INSERT INTO Busquedas (idUsuario, urlbusqueda,fechaBusqueda) VALUES (?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
-			preparedStatement.setInt(1, 1);
+			preparedStatement.setInt(1, UsuarioModel.getUser().getidUsuario());
+			System.out.println( UsuarioModel.getUser().getidUsuario());
 			preparedStatement.setString(2, textoInput);
 			preparedStatement.setDate(3, new java.sql.Date(Calendar.getInstance().getTime().getTime())  );
 			preparedStatement.executeUpdate(); 
 		} catch (SQLIntegrityConstraintViolationException z) {
-			
+			System.out.println(z);
 		} catch (SQLException ok) {
-			
+			System.out.println(ok);
 		}
 	}
 	//Consultamos si en nuestra base de datos tenemos una letra para la cancion que se ha buscado y no se encuentra en la api

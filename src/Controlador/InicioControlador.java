@@ -22,8 +22,8 @@ public class InicioControlador {
 		}else{
 			addLetra.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					AddLetraVista frame = new AddLetraVista();
-					frame.setVisible(true);
+					AddLetraVista z = new AddLetraVista();
+					z.frame.setVisible(true);
 				}
 			});
 		}

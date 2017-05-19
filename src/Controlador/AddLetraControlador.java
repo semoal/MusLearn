@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -17,6 +18,7 @@ import com.mysql.jdbc.Statement;
 import Modelo.Conexion;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
+import Vista.AccesoVista;
 
 public class AddLetraControlador {
 	private boolean ok;
@@ -67,6 +69,16 @@ public class AddLetraControlador {
 			e.printStackTrace();
 			this.ok = false;
 		}
+	}
+	
+	public void volver(JButton btnVolver,JFrame x){
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccesoVista window = new AccesoVista();
+				window.frame.setVisible(true);
+		  		x.dispose();
+			}
+		});
 	}
 	
 }

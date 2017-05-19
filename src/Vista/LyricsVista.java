@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -88,6 +89,9 @@ public class LyricsVista {
         textArea_1.setColumns(24);
         textArea_1.setEditable(false);
         scrollPane.setViewportView(textArea_1);
+        JLabel loading = new JLabel("Cargando... ", new ImageIcon(LyricsVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
+        loading.setVisible(false);
+        panel_2.add(loading);
         
         JLabel lblStatus = new JLabel("Status: ");
         panel_2.add(lblStatus);
@@ -98,9 +102,10 @@ public class LyricsVista {
         frame.setSize(700, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        //Boton de exportar
+        
+       // Boton de exportar
         lc.exportarText(btnExportar, textArea_1,lblStatus);
         //boTON DE BUSCAR EN LA API
-        lc.ejecutaTodo(btnNewButton,textField_2,textArea_1,panel,browser);
+        lc.ejecutaTodo(btnNewButton,textField_2,textArea_1,panel,browser,loading);
 	}
 }
