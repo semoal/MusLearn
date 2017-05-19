@@ -7,12 +7,14 @@ public class LetraModel {
 	private String titulo;
 	private String artista;
 	private String letra;
+	private String urlYoutube;
 	private Date fechainsercion;
 	
 	public LetraModel() {
 		this.idUsuario = 0;
 		this.titulo = "";
 		this.artista = "";
+		this.urlYoutube = "";
 		this.letra = "";
 		this.fechainsercion = null;
 	}
@@ -31,6 +33,14 @@ public class LetraModel {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	
+	public String getUrlYoutube() {
+		return urlYoutube;
+	}
+
+	public void setUrlYoutube(String urlYoutube) {
+		this.urlYoutube = urlYoutube;
 	}
 
 	public String getArtista() {

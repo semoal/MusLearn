@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import Vista.AddLetraVista;
+import Vista.AnyadirLetra;
 import Vista.LyricsVista;
 import Vista.RankingView;
 
@@ -17,7 +17,7 @@ public class VistaControlador {
 	public void goMain(JButton addLetra){
 		addLetra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddLetraVista frame = new AddLetraVista();
+				AnyadirLetra frame = new AnyadirLetra();
 				frame.frame.setVisible(true);
 			}
 		});

@@ -68,15 +68,6 @@ public class InicioVista {
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		panel_1.add(horizontalStrut_1);
 		
-		JButton button = new JButton("Perfil");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PerfilVista window = new PerfilVista();
-				window.frame.setVisible(true);
-			}
-		});
-		frame.getContentPane().add(button);
-		
 		Component verticalStrut = Box.createVerticalStrut(20);
 		frame.getContentPane().add(verticalStrut);
 		
@@ -113,6 +104,15 @@ public class InicioVista {
 		JButton addletra = new JButton("Añadir letras");
 		panel.add(addletra);
 		vc.goMain(addletra);
+		
+		JButton button = new JButton("Perfil");
+		panel.add(button);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PerfilVista window = new PerfilVista();
+				window.frame.setVisible(true);
+			}
+		});
 	}
 
 }

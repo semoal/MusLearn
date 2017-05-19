@@ -6,27 +6,37 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import Controlador.PerfilControlador;
+import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.util.ArrayList;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PerfilVista {
 
 	public JFrame frame;
-
+	private JTable table_1;
 	public PerfilVista() {
 		initialize();
 	}
 
 	private void initialize() {
+		PerfilControlador pc = new PerfilControlador();
 		frame = new JFrame();
 		frame.setTitle("MusLearn - Perfil");
 		frame.setBounds(100, 100, 450, 300);
@@ -47,6 +57,11 @@ public class PerfilVista {
 		lblTusUltimasBusquedas_1.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblTusUltimasBusquedas_1);
 		
+		JLabel copy = new JLabel("");
+		copy.setForeground(Color.RED);
+		copy.setAlignmentX(Component.CENTER_ALIGNMENT);
+		frame.getContentPane().add(copy);
+		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
@@ -54,17 +69,18 @@ public class PerfilVista {
 		JScrollPane scrollPane = new JScrollPane();
 		panel_1.add(scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124", "titulo - https://www.youtube.com/jejeje - 17/03/1124"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		table_1 = new JTable();
+		table_1.setDefaultEditor(Object.class, null);
+		scrollPane.setViewportView(table_1);
+		
+		ArrayList<LetraModel> list = pc.getLetrasBuscadas();
+		
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Url","Fecha","Titulo"},0);
+
+		for(int i=0;i<list.size();i++){
+			model.addRow(new Object[]{list.get(i).getUrlYoutube(),list.get(i).getFechainsercion(),pc.urlAtitulo(list.get(i).getUrlYoutube())});
+		}
+		table_1.setModel(model);
 		
 		JPanel panel_2 = new JPanel();
 		frame.getContentPane().add(panel_2);
@@ -72,8 +88,10 @@ public class PerfilVista {
 		
 		JButton btnVolver = new JButton("Volver");
 		panel_2.add(btnVolver);
+		pc.volverMain(btnVolver, frame);
 		
 		JButton btnCopiarUrl = new JButton("Copiar URL");
+		pc.copiarUrl(btnCopiarUrl,table_1,copy);
 		panel_2.add(btnCopiarUrl);
 		
 		JButton btnCerrarApp = new JButton("Cerrar APP");

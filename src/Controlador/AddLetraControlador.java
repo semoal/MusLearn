@@ -19,6 +19,7 @@ import Modelo.Conexion;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 import Vista.AccesoVista;
+import Vista.InicioVista;
 
 public class AddLetraControlador {
 	private boolean ok;
@@ -74,9 +75,7 @@ public class AddLetraControlador {
 	public void volver(JButton btnVolver,JFrame x){
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AccesoVista window = new AccesoVista();
-				window.frame.setVisible(true);
-		  		x.dispose();
+				x.dispose();
 			}
 		});
 	}

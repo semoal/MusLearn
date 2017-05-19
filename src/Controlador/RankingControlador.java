@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 
 import Modelo.Conexion;
 import Modelo.UsuarioModel;
-import Vista.AddLetraVista;
 import Vista.InicioVista;
 
 public class RankingControlador {
