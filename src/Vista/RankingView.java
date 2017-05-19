@@ -30,6 +30,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RankingView {
 
@@ -84,6 +85,16 @@ public class RankingView {
 		for(int i=0;i<list.size();i++){
 			model.addRow(new Object[]{list.get(i).getAlias(),list.get(i).getNumeroLetras()});
 		}
+		
+		List<String> export = new ArrayList<String>();
+		int row =  model.getRowCount();
+        for (int x = 0; x < row; x++){
+        	
+              export.add(model.getValueAt(x, 0).toString() +" "+ model.getValueAt(x, 1).toString());
+        }
+        
+        //System.out.println(export);
+		
 		table.setModel(model);
 		
 		JPanel panel2 = new JPanel();
@@ -97,10 +108,10 @@ public class RankingView {
 		panel2.add(btnVolver);
 		btnVolver.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		//Acción botón exportar PDF
-		rk.exportarPDF(btnExportar);
 		//Acción boton volver main
 		rk.volverMain(btnVolver,frame);
+		
+		rk.exportarRank(btnExportar, export);
 	}
 
 }
