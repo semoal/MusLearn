@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.RankingControlador;
+import Modelo.UsuarioModel;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -27,6 +28,8 @@ import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class RankingView {
 
@@ -70,22 +73,18 @@ public class RankingView {
 		panel_1.add(scrollPane_1);
 		
 		table = new JTable();
+		table.setEnabled(false);
 		table.setBackground(Color.LIGHT_GRAY);
 		scrollPane_1.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Sergio Moreno", "10"},
-				{"Prueba moreno", "5"},
-				{"David Ubeda", "2"},
-				{"Marco climent", "1"},
-				{"Dani", "2"},
-			},
-			new String[] {
-				"Nombre completo", "Número Letras"
-			}
-		));
 		
+		ArrayList<UsuarioModel> list = rk.ranking();
+		
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Alias","Letras"},0);
 
+		for(int i=0;i<list.size();i++){
+			model.addRow(new Object[]{list.get(i).getAlias(),list.get(i).getNumeroLetras()});
+		}
+		table.setModel(model);
 		
 		JPanel panel2 = new JPanel();
 		frame.getContentPane().add(panel2);

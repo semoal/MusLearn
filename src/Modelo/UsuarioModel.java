@@ -9,6 +9,7 @@ public class UsuarioModel {
 	private String password;
 	private Date fecharegistro;
 	private String rol;
+	private int numeroLetras;
 	
 	public UsuarioModel() {
 		this.idUsuario = 0;
@@ -16,6 +17,7 @@ public class UsuarioModel {
 		this.password = "";
 		this.fecharegistro = null;
 		this.rol = "";
+		this.numeroLetras = 0;
 	}
 	public static UsuarioModel getUser(){
 		return current_user;
@@ -63,6 +65,13 @@ public class UsuarioModel {
 
 	public void setFecharegistro(Date fecharegistro) {
 		this.fecharegistro = fecharegistro;
+	}
+	public int getNumeroLetras() {
+		return numeroLetras;
+	}
+
+	public void setNumeroLetras(int numeroLetras) {
+		this.numeroLetras = numeroLetras;
 	}
 	
 }
