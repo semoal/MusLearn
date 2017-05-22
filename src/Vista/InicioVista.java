@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import Controlador.InicioControlador;
+import Modelo.Idioma;
 import Modelo.UsuarioModel;
 
 import java.awt.Color;
@@ -83,7 +84,7 @@ public class InicioVista {
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		frame.getContentPane().add(verticalStrut_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Bienvenido "+UsuarioModel.getUser().getAlias()+", espero que la disfrutes...");
+		JLabel lblNewLabel_2 = new JLabel(Idioma.getIdioma().getProperty("bienvenido")+" "+UsuarioModel.getUser().getAlias()+", "+Idioma.getIdioma().getProperty("espero"));
 		lblNewLabel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel_2);
 		
@@ -92,14 +93,14 @@ public class InicioVista {
 		lblNewLabel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(tutorial);
 		
-		JLabel lblNewLabel_1 = new JLabel("Aplicación que incorpora todas las letras del mercado, y videos..");
+		JLabel lblNewLabel_1 = new JLabel(Idioma.getIdioma().getProperty("descripcion"));
 		lblNewLabel_1.setBackground(new Color(192, 192, 192));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Kohinoor Bangla", Font.PLAIN, 13));
 		lblNewLabel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-	    JLabel loading = new JLabel("Cargando... ", new ImageIcon(LoginVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
+	    JLabel loading = new JLabel(Idioma.getIdioma().getProperty("cargando")+"... ", new ImageIcon(LoginVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
 	    loading.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    loading.setVisible(false);
 	    frame.getContentPane().add(loading);
@@ -110,7 +111,7 @@ public class InicioVista {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel);
 		
-		JButton goMain = new JButton("Video & Letras");
+		JButton goMain = new JButton(Idioma.getIdioma().getProperty("video&letras"));
 		panel.add(goMain);
 		vc.goLetra(goMain,loading,frame);
 		int busquedas = UsuarioModel.getUser().getBusquedas();
@@ -121,16 +122,16 @@ public class InicioVista {
 		}else{
 			goMain.setEnabled(true);
 		}
-		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){tutorial.setText("Los usuarios invitados, solo pueden realizar 5 busquedas y no pueden añadir letras \n Te quedan: "+total+" busquedas");}
-		JButton ranking = new JButton("Estadisticas");
+		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){tutorial.setText("Los usuarios invitados, solo pueden realizar 5 busquedas y no pueden a�adir letras \n Te quedan: "+total+" busquedas");}
+		JButton ranking = new JButton(Idioma.getIdioma().getProperty("estadisticas"));
 		panel.add(ranking);
 		vc.goRanking(ranking,loading,frame);
 		
-		JButton addletra = new JButton("Añadir letras");
+		JButton addletra = new JButton(Idioma.getIdioma().getProperty("anyadirletras"));
 		panel.add(addletra);
 		vc.goMain(addletra,loading,frame);
 		
-		JButton button = new JButton("Perfil");
+		JButton button = new JButton(Idioma.getIdioma().getProperty("perfil"));
 		panel.add(button);	
 		vc.irPerfil(button,loading,frame);
 	}

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.InvitadoControlador;
+import Modelo.Idioma;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -71,7 +72,7 @@ public class InvitadoVista{
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
 		
-		JLabel lblIntroduceAlias = new JLabel("Introduce Alias :");
+		JLabel lblIntroduceAlias = new JLabel(Idioma.getIdioma().getProperty("introducealias"));
 		panel.add(lblIntroduceAlias);
 		
 		textField = new JTextField();
@@ -82,12 +83,12 @@ public class InvitadoVista{
 		contentPane.add(panel_1);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 		
-		lblAvisoCon = new JLabel("AVISO : Con la sesi\u00F3n Invitado solo podr\u00E1 buscar tres canciones.");
+		lblAvisoCon = new JLabel(Idioma.getIdioma().getProperty("aviso1"));
 		lblAvisoCon.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblAvisoCon.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_1.add(lblAvisoCon);
 		
-		lblAdemsNoPodra = new JLabel(" Adem\u00E1s no podr\u00E1 insertar la letra de las canciones.");
+		lblAdemsNoPodra = new JLabel(Idioma.getIdioma().getProperty("aviso2"));
 		lblAdemsNoPodra.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contentPane.add(lblAdemsNoPodra);
 		
@@ -106,13 +107,13 @@ public class InvitadoVista{
 		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
 		contentPane.add(panel_2);
 		
-		btnContinuar = new JButton("Continuar");
+		btnContinuar = new JButton(Idioma.getIdioma().getProperty("continuar"));
 		panel_2.add(btnContinuar);
 		
 		horizontalStrut = Box.createHorizontalStrut(20);
 		panel_2.add(horizontalStrut);
 		
-		btnVolver = new JButton("Volver");
+		btnVolver = new JButton(Idioma.getIdioma().getProperty("volver"));
 		panel_2.add(btnVolver);
 		ic.volverAcceso(btnVolver,frame);
 		

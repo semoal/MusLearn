@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.RegistroControlador;
+import Modelo.Idioma;
 
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
@@ -63,7 +64,7 @@ public class RegistroVista{
 		contentPane.add(panel_2);
 		 panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
 		
-		JLabel lblMensaje = new JLabel("Escribe tus credenciales");
+		JLabel lblMensaje = new JLabel(Idioma.getIdioma().getProperty("escribe"));
 		panel_2.add(lblMensaje);
 		
 		Component verticalStrut_8 = Box.createVerticalStrut(20);
@@ -87,7 +88,7 @@ public class RegistroVista{
 	    JPanel panel_5 = new JPanel();
 	    panel_3.add(panel_5);
 	   
-	     JLabel lblUser = new JLabel("Usuario:");
+	     JLabel lblUser = new JLabel(Idioma.getIdioma().getProperty("usuario"));
 	     panel_5.add(lblUser);
 	   
 	     textFieldUser = new JTextField();
@@ -106,7 +107,7 @@ public class RegistroVista{
 	    JPanel panel_6 = new JPanel();
 	    panel_3.add(panel_6);
 	   
-	     JLabel lblPass = new JLabel("Contrase\u00F1a:");
+	     JLabel lblPass = new JLabel(Idioma.getIdioma().getProperty("contrasenya"));
 	     panel_6.add(lblPass);
 	     
 	     passwordField_1 = new JPasswordField();
@@ -125,7 +126,7 @@ public class RegistroVista{
 	    JPanel panel_4 = new JPanel();
 	    panel_1.add(panel_4);
 	    
-	    JLabel lblVuelveAEscribir = new JLabel("Repite contrase\u00F1a:");
+	    JLabel lblVuelveAEscribir = new JLabel(Idioma.getIdioma().getProperty("repitecontr"));
 	    panel_4.add(lblVuelveAEscribir);
 	
 		passwordField_2 = new JPasswordField();
@@ -166,13 +167,13 @@ public class RegistroVista{
 		 Component horizontalGlue_4 = Box.createHorizontalGlue();
 		 panel_7.add(horizontalGlue_4);
 		
-		 JButton btnVolver = new JButton("Volver");
+		 JButton btnVolver = new JButton(Idioma.getIdioma().getProperty("volver"));
 		 panel_7.add(btnVolver);
 		 rg.volverAcceso(btnVolver, frame);
 	  
 		 Component horizontalGlue_5 = Box.createHorizontalGlue();
 		 panel_7.add(horizontalGlue_5);
-		 JButton btnRegistrarse = new JButton("Registrarse");
+		 JButton btnRegistrarse = new JButton(Idioma.getIdioma().getProperty("registrarse"));
 		 panel_7.add(btnRegistrarse);		 
 		 rg.creaUsuario(btnRegistrarse, textFieldUser, passwordField_1, passwordField_2, lblMensaje);
         }

@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.PerfilControlador;
+import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 
@@ -61,7 +62,7 @@ public class PerfilVista {
 		username.setAlignmentX(Component.CENTER_ALIGNMENT);
 		username.setBackground(SystemColor.textHighlight);
 		
-		JLabel lblTusUltimasBusquedas_1 = new JLabel("Tus ultimas busquedas :");
+		JLabel lblTusUltimasBusquedas_1 = new JLabel(Idioma.getIdioma().getProperty("tusultimas"));
 		lblTusUltimasBusquedas_1.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblTusUltimasBusquedas_1);
 		
@@ -70,7 +71,7 @@ public class PerfilVista {
 		copy.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(copy);
 		
-		JLabel numeroBusquedas = new JLabel("Has hecho: "+UsuarioModel.getUser().getBusquedas()+" busquedas");
+		JLabel numeroBusquedas = new JLabel(Idioma.getIdioma().getProperty("hashecho")+UsuarioModel.getUser().getBusquedas()+Idioma.getIdioma().getProperty("busquedas"));
 		copy.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(numeroBusquedas);
 		
@@ -87,7 +88,7 @@ public class PerfilVista {
 		
 		ArrayList<LetraModel> list = pc.getLetrasBuscadas();
 		
-		DefaultTableModel model = new DefaultTableModel(new Object[]{"Url","Fecha","Titulo"},0);
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Url",Idioma.getIdioma().getProperty("fecha"),Idioma.getIdioma().getProperty("titulo")},0);
 
 		for(int i=0;i<list.size();i++){
 			model.addRow(new Object[]{list.get(i).getUrlYoutube(),list.get(i).getFechainsercion(),pc.urlAtitulo(list.get(i).getUrlYoutube())});
@@ -98,15 +99,15 @@ public class PerfilVista {
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
 		
-		JButton btnVolver = new JButton("Volver");
+		JButton btnVolver = new JButton(Idioma.getIdioma().getProperty("volver"));
 		panel_2.add(btnVolver);
 		pc.volverMain(btnVolver, frame);
 		
-		JButton btnCopiarUrl = new JButton("Copiar URL");
+		JButton btnCopiarUrl = new JButton(Idioma.getIdioma().getProperty("copiarurl"));
 		pc.copiarUrl(btnCopiarUrl,table_1,copy);
 		panel_2.add(btnCopiarUrl);
 		
-		JButton btnCerrarApp = new JButton("Cerrar APP");
+		JButton btnCerrarApp = new JButton(Idioma.getIdioma().getProperty("cerrar"));
 		panel_2.add(btnCerrarApp);
 	}
 

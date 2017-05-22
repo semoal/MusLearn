@@ -109,7 +109,7 @@ public class LoginVista{
   JPanel panel_6 = new JPanel();
   panel_3.add(panel_6);
 
-  JLabel lblPass = new JLabel(Idioma.getIdioma().getProperty("contraseña"));
+  JLabel lblPass = new JLabel(Idioma.getIdioma().getProperty("contrasenya"));
   panel_6.add(lblPass);
   
 
@@ -129,7 +129,7 @@ public class LoginVista{
   JPanel panel_4 = new JPanel();
   contentPane.add(panel_4);
   
-  JLabel loading = new JLabel("Cargando... ", new ImageIcon(LoginVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
+  JLabel loading = new JLabel(Idioma.getIdioma().getProperty("cargando"), new ImageIcon(LoginVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
   loading.setVisible(false);
   panel_4.add(loading);
   

@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import Controlador.AddLetraControlador;
+import Modelo.Idioma;
 
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -56,14 +57,14 @@ public class AnyadirLetra {
 		panel.setBackground(UIManager.getColor("ToolTip.background"));
 		frame.getContentPane().add(panel);
 		
-		JLabel lblTituloCancion = new JLabel("Titulo cancion:");
+		JLabel lblTituloCancion = new JLabel(Idioma.getIdioma().getProperty("titulo"));
 		panel.add(lblTituloCancion);
 		
 		textField = new JTextField();
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Artista:");
+		JLabel lblNewLabel = new JLabel(Idioma.getIdioma().getProperty("artista"));
 		panel.add(lblNewLabel);
 		
 		textField_1 = new JTextField();
@@ -74,7 +75,7 @@ public class AnyadirLetra {
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
 		
-		JLabel lblNewLabel_1 = new JLabel("Introduce una letra:");
+		JLabel lblNewLabel_1 = new JLabel(Idioma.getIdioma().getProperty("anyadirletra"));
 		panel_1.add(lblNewLabel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -88,10 +89,10 @@ public class AnyadirLetra {
 		JPanel panel_2 = new JPanel();
 		frame.getContentPane().add(panel_2);
 		
-		JButton btnAadirCancion = new JButton("Añadir cancion");
+		JButton btnAadirCancion = new JButton(Idioma.getIdioma().getProperty("anyadircancion"));
 		panel_2.add(btnAadirCancion);
 		
-		JButton btnVolver = new JButton("Volver");
+		JButton btnVolver = new JButton(Idioma.getIdioma().getProperty("volver"));
 		panel_2.add(btnVolver);
 		adc.volver(btnVolver, frame);
 		

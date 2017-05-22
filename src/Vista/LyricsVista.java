@@ -15,6 +15,7 @@ import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 
 import Controlador.LyricsControlador;
+import Modelo.Idioma;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -68,13 +69,13 @@ public class LyricsVista {
         panel_1.add(textField_2);
         textField_2.setColumns(10);
         
-        JButton btnNewButton = new JButton("Buscar");
+        JButton btnNewButton = new JButton(Idioma.getIdioma().getProperty("buscar"));
         panel_1.add(btnNewButton);
         
-        JButton btnExportar = new JButton("Exportar");
+        JButton btnExportar = new JButton(Idioma.getIdioma().getProperty("exportar"));
         panel_1.add(btnExportar);
         
-        JButton volver = new JButton("Volver");
+        JButton volver = new JButton(Idioma.getIdioma().getProperty("volver"));
         panel_1.add(volver);
         lc.volver(volver,frame);
         
@@ -94,11 +95,11 @@ public class LyricsVista {
         textArea_1.setColumns(25);
         textArea_1.setEditable(false);
         scrollPane.setViewportView(textArea_1);
-        JLabel loading = new JLabel("Cargando... ", new ImageIcon(LyricsVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
+        JLabel loading = new JLabel(Idioma.getIdioma().getProperty("cargando"), new ImageIcon(LyricsVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
         loading.setVisible(false);
         panel_2.add(loading);
         
-        JLabel lblStatus = new JLabel("Status: ");
+        JLabel lblStatus = new JLabel(Idioma.getIdioma().getProperty("status"));
         panel_2.add(lblStatus);
         
 

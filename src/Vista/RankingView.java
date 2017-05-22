@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.RankingControlador;
+import Modelo.Idioma;
 import Modelo.UsuarioModel;
 
 import javax.swing.JButton;
@@ -86,7 +87,7 @@ public class RankingView {
 		
 		ArrayList<UsuarioModel> list = rk.ranking();
 		
-		DefaultTableModel model = new DefaultTableModel(new Object[]{"Alias","Letras"},0);
+		DefaultTableModel model = new DefaultTableModel(new Object[]{Idioma.getIdioma().getProperty("alias"),Idioma.getIdioma().getProperty("letras")},0);
 
 		for(int i=0;i<list.size();i++){
 			model.addRow(new Object[]{list.get(i).getAlias(),list.get(i).getNumeroLetras()});
@@ -106,11 +107,11 @@ public class RankingView {
 		JPanel panel2 = new JPanel();
 		frame.getContentPane().add(panel2);
 		
-		JButton btnExportar = new JButton("Exportar");
+		JButton btnExportar = new JButton(Idioma.getIdioma().getProperty("exportar"));
 		panel2.add(btnExportar);
 		btnExportar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JButton btnVolver = new JButton("Volver");
+		JButton btnVolver = new JButton(Idioma.getIdioma().getProperty("volver"));
 		panel2.add(btnVolver);
 		btnVolver.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
