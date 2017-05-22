@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.LoginControlador;
+import Modelo.Idioma;
 
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
@@ -32,7 +33,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class LoginVista{
-	public JFrame frame;
+ public JFrame frame;
  private JTextField textField;
  private JPasswordField passwordField;
  private JPanel contentPane;
@@ -65,7 +66,7 @@ public class LoginVista{
   contentPane.add(panel_2);
   panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
 
-  JLabel lblMensaje = new JLabel("Inicia sesión");
+  JLabel lblMensaje = new JLabel(Idioma.getIdioma().getProperty("iniciar"));
   panel_2.add(lblMensaje);
 
   Component verticalStrut_8 = Box.createVerticalStrut(20);
@@ -89,7 +90,7 @@ public class LoginVista{
   JPanel panel_5 = new JPanel();
   panel_3.add(panel_5);
 
-  JLabel lblUser = new JLabel("Usuario:");
+  JLabel lblUser = new JLabel(Idioma.getIdioma().getProperty("usuario"));
   panel_5.add(lblUser);
 
   textFieldUser = new JTextField();
@@ -108,7 +109,7 @@ public class LoginVista{
   JPanel panel_6 = new JPanel();
   panel_3.add(panel_6);
 
-  JLabel lblPass = new JLabel("Contrase\u00F1a:");
+  JLabel lblPass = new JLabel(Idioma.getIdioma().getProperty("contraseña"));
   panel_6.add(lblPass);
   
 
@@ -154,15 +155,15 @@ public class LoginVista{
   panel_7.add(horizontalGlue_4);
   JComboBox comboBox = new JComboBox();
   panel.add(comboBox);
-  comboBox.setModel(new DefaultComboBoxModel(new String[] {"Usuario registrado", "Usuario invitado"}));
-  JButton btnRegistrarse = new JButton("Iniciar sesión");
+  comboBox.setModel(new DefaultComboBoxModel(new String[] {Idioma.getIdioma().getProperty("usuarioreg"), Idioma.getIdioma().getProperty("usuarioinv")}));
+  JButton btnRegistrarse = new JButton(Idioma.getIdioma().getProperty("iniciar"));
   panel_7.add(btnRegistrarse);
   comboBox.addActionListener(
           new ActionListener(){
               public void actionPerformed(ActionEvent e){
                   JComboBox combo = (JComboBox)e.getSource();
                   String currentUser = (String)combo.getSelectedItem();
-                  if(currentUser.equalsIgnoreCase("Usuario registrado")){
+                  if(currentUser.equalsIgnoreCase(Idioma.getIdioma().getProperty("usuarioreg"))){
                 	  passwordField_1.enable();
                 	  passwordField_1.setEnabled(true);
                 	  passwordField_1.setBackground(Color.white);
@@ -179,7 +180,7 @@ public class LoginVista{
 
   //Botón de iniciar sesion
   lg.ejecutaTodo(btnRegistrarse,textFieldUser,passwordField_1,lblStatus,loading,frame);
-  JButton btnVolver = new JButton("Volver");
+  JButton btnVolver = new JButton(Idioma.getIdioma().getProperty("volver"));
   panel_7.add(btnVolver);
   lg.volverAcceso(btnVolver,frame);
   

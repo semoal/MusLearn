@@ -28,6 +28,7 @@ public class Conexion {
 		}
 		return con;
 	}	
+	
 	public Connection getConexion() {
 		return conexion;
 	}

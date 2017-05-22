@@ -27,6 +27,8 @@ import javax.swing.JToolBar;
 import javax.swing.JMenuBar;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class InicioVista {
 
@@ -43,8 +45,9 @@ public class InicioVista {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		InicioControlador vc = new InicioControlador();
-		frame = new JFrame();
+		frame =  new JFrame();
 		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(InicioVista.class.getResource("/Imagen/je.png")));
 		frame.setTitle("MusLearn - DAM");
 		frame.getContentPane().setBackground(new Color(238, 238, 238));
@@ -70,6 +73,7 @@ public class InicioVista {
 		
 		Component verticalStrut = Box.createVerticalStrut(20);
 		frame.getContentPane().add(verticalStrut);
+	
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("/Users/sergiomoreno/Documents/workspace/MusLearn/je.png"));
