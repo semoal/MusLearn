@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
@@ -22,6 +24,7 @@ import Modelo.UsuarioModel;
 
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -38,8 +41,13 @@ public class PerfilVista {
 	private void initialize() {
 		PerfilControlador pc = new PerfilControlador();
 		frame = new JFrame();
+		frame.pack();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = screenSize.height;
+		int width = screenSize.width;
+		frame.setSize(width/2, height/2);
+		frame.setLocationRelativeTo(null);
 		frame.setTitle("MusLearn - Perfil");
-		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		
@@ -61,6 +69,10 @@ public class PerfilVista {
 		copy.setForeground(Color.RED);
 		copy.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(copy);
+		
+		JLabel numeroBusquedas = new JLabel("Has hecho: "+UsuarioModel.getUser().getBusquedas()+" busquedas");
+		copy.setAlignmentX(Component.CENTER_ALIGNMENT);
+		frame.getContentPane().add(numeroBusquedas);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1);

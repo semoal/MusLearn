@@ -3,6 +3,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -159,7 +160,7 @@ public class LyricsControlador {
 		if(!input.getText().isEmpty()){
 			 String videoUrlTemp= input.getText();
 		     String videoUrl = videoUrlTemp.replace("watch?v=","embed/");
-		     String x = "<iframe width=\"420\" height=\"345\" src=\""+videoUrl+"?autoplay=1\"></iframe>";
+		     String x = "<iframe width=\"420\" height=\"345\" src=\""+videoUrl+"?rel=0&autoplay=1 allowfullscreen\"></iframe>";
 		     browser.loadHTML(x);
 		}
 	}
@@ -244,6 +245,16 @@ public class LyricsControlador {
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void volver(JButton button, JFrame frame){
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				InicioVista inc = new InicioVista();
+				inc.frame.setVisible(true);
+			}
+		});
 	}
 	
 	/* Conversor de texto con caracteres especiales para la api */

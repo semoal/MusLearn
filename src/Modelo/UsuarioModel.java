@@ -10,6 +10,7 @@ public class UsuarioModel {
 	private Date fecharegistro;
 	private String rol;
 	private int numeroLetras;
+	private int busquedas;
 	
 	public UsuarioModel() {
 		this.idUsuario = 0;
@@ -18,6 +19,7 @@ public class UsuarioModel {
 		this.fecharegistro = null;
 		this.rol = "";
 		this.numeroLetras = 0;
+		this.busquedas = 0;
 	}
 	public static UsuarioModel getUser(){
 		return current_user;
@@ -33,6 +35,13 @@ public class UsuarioModel {
 	
 	public void setIdUsuario(int idUsuario){
 		this.idUsuario = idUsuario;
+	}
+	public int getBusquedas(){
+		return busquedas;
+	}
+	
+	public void setBusquedas(int busquedas){
+		this.busquedas = busquedas;
 	}
 	
 	public String getRol() {

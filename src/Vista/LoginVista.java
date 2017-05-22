@@ -47,7 +47,6 @@ public class LoginVista{
   LoginControlador lg = new LoginControlador();
   frame = new JFrame();
   frame.pack();
-  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   int height = screenSize.height;
   int width = screenSize.width;

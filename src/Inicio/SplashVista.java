@@ -1,9 +1,11 @@
 package Inicio;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -24,7 +26,12 @@ public class SplashVista extends JFrame {
 
 	public SplashVista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		pack();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = screenSize.height;
+		int width = screenSize.width;
+		setSize(width/2, height/2);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -96,7 +103,7 @@ public void iniciarHilo(){
 					lblPorcentaje.setText(x+"%");
 					lblPorcentaje.setText(+x+"%");
 					x++;
-					Thread.sleep(1);
+					Thread.sleep(50);
 				}	
 				dispose();
 				AccesoVista window = new AccesoVista();

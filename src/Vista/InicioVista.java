@@ -79,12 +79,26 @@ public class InicioVista {
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		frame.getContentPane().add(verticalStrut_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("Aplicación que incorpora todas las letras del mercado, y videos.."+UsuarioModel.getUser().getAlias());
+		JLabel lblNewLabel_2 = new JLabel("Bienvenido "+UsuarioModel.getUser().getAlias()+", espero que la disfrutes...");
+		lblNewLabel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		JLabel tutorial = new JLabel("");
+		tutorial.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblNewLabel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		frame.getContentPane().add(tutorial);
+		
+		JLabel lblNewLabel_1 = new JLabel("Aplicación que incorpora todas las letras del mercado, y videos..");
 		lblNewLabel_1.setBackground(new Color(192, 192, 192));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Kohinoor Bangla", Font.PLAIN, 13));
 		lblNewLabel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel_1);
+		
+	    JLabel loading = new JLabel("Cargando... ", new ImageIcon(LoginVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
+	    loading.setAlignmentX(Component.CENTER_ALIGNMENT);
+	    loading.setVisible(false);
+	    frame.getContentPane().add(loading);
 		
 		Component verticalGlue = Box.createVerticalGlue();
 		frame.getContentPane().add(verticalGlue);
@@ -94,25 +108,27 @@ public class InicioVista {
 		
 		JButton goMain = new JButton("Video & Letras");
 		panel.add(goMain);
-		
-		vc.goLetra(goMain);
-		
+		vc.goLetra(goMain,loading,frame);
+		int busquedas = UsuarioModel.getUser().getBusquedas();
+		int max = 5;
+		int total = max - busquedas;
+		if(UsuarioModel.getUser().getBusquedas()>=5 && UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){
+			goMain.setEnabled(false);
+		}else{
+			goMain.setEnabled(true);
+		}
+		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){tutorial.setText("Los usuarios invitados, solo pueden realizar 5 busquedas y no pueden añadir letras \n Te quedan: "+total+" busquedas");}
 		JButton ranking = new JButton("Estadisticas");
 		panel.add(ranking);
-		vc.goRanking(ranking);
+		vc.goRanking(ranking,loading,frame);
 		
 		JButton addletra = new JButton("Añadir letras");
 		panel.add(addletra);
-		vc.goMain(addletra);
+		vc.goMain(addletra,loading,frame);
 		
 		JButton button = new JButton("Perfil");
-		panel.add(button);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PerfilVista window = new PerfilVista();
-				window.frame.setVisible(true);
-			}
-		});
+		panel.add(button);	
+		vc.irPerfil(button,loading,frame);
 	}
 
 }

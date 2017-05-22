@@ -21,6 +21,8 @@ import org.json.JSONObject;
 import Modelo.Conexion;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
+import Vista.InicioVista;
+
 import java.awt.datatransfer.*;
 import java.awt.Toolkit;
 
@@ -31,7 +33,7 @@ public class PerfilControlador {
 		Statement stmt;
 		ArrayList<LetraModel> list = new ArrayList<LetraModel>();
 		try {
-String sql = "SELECT * FROM Busquedas b left join Usuarios u on u.idUsuario=b.idUsuario where u.idUsuario=?";
+			String sql = "SELECT * FROM Busquedas b left join Usuarios u on u.idUsuario=b.idUsuario where u.idUsuario=?";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
 			preparedStatement.setInt(1, UsuarioModel.getUser().getidUsuario());
 			rs = preparedStatement.executeQuery(); 
@@ -81,6 +83,8 @@ String sql = "SELECT * FROM Busquedas b left join Usuarios u on u.idUsuario=b.id
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				InicioVista inc = new InicioVista();
+				inc.frame.setVisible(true);
 			}
 		});	
 	}

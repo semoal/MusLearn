@@ -52,6 +52,7 @@ public class RankingView {
 		RankingControlador rk = new RankingControlador();
 		frame = new JFrame();
 	    frame.pack();
+	    frame.setTitle("MusLearn - Ranking de letras");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	    int height = screenSize.height;

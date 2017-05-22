@@ -73,12 +73,17 @@ public class LyricsVista {
         
         JButton btnExportar = new JButton("Exportar");
         panel_1.add(btnExportar);
+        
+        JButton volver = new JButton("Volver");
+        panel_1.add(volver);
+        lc.volver(volver,frame);
+        
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         
         JPanel panel_2 = new JPanel();
-        frame.getContentPane().add(panel_2, BorderLayout.EAST);
+        frame.getContentPane().add(panel_2, BorderLayout.SOUTH);
         panel_2.setPreferredSize(new Dimension(300,150));
-        panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
         
         JScrollPane scrollPane = new JScrollPane();
         panel_2.add(scrollPane);
@@ -86,7 +91,7 @@ public class LyricsVista {
 
         JTextArea textArea_1 = new JTextArea();
         textArea_1.setRows(25);
-        textArea_1.setColumns(24);
+        textArea_1.setColumns(25);
         textArea_1.setEditable(false);
         scrollPane.setViewportView(textArea_1);
         JLabel loading = new JLabel("Cargando... ", new ImageIcon(LyricsVista.class.getResource("/Imagen/loader.gif")), JLabel.CENTER);
@@ -104,8 +109,8 @@ public class LyricsVista {
         frame.setVisible(true);
         
        // Boton de exportar
-        lc.exportarText(btnExportar, textArea_1,lblStatus);
+       lc.exportarText(btnExportar, textArea_1,lblStatus);
         //boTON DE BUSCAR EN LA API
-        lc.ejecutaTodo(btnNewButton,textField_2,textArea_1,panel,browser,loading);
+       lc.ejecutaTodo(btnNewButton,textField_2,textArea_1,panel,browser,loading);
 	}
 }

@@ -51,6 +51,8 @@ String sql = "SELECT *,count(*) as numero FROM Letras l LEFT JOIN Usuarios u ON 
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				InicioVista inc = new InicioVista();
+				inc.frame.setVisible(true);
 			}
 		});	
 	}

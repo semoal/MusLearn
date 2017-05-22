@@ -76,6 +76,8 @@ public class AddLetraControlador {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				x.dispose();
+				InicioVista inc = new InicioVista();
+				inc.frame.setVisible(true);
 			}
 		});
 	}

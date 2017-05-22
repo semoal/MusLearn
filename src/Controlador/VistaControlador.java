@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import Vista.AnyadirLetra;
 import Vista.LyricsVista;
+import Vista.PerfilVista;
 import Vista.RankingView;
 
 public class VistaControlador {
@@ -46,4 +47,5 @@ public class VistaControlador {
 			}
 		});
 	}
+
 }

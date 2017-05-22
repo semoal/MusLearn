@@ -61,9 +61,12 @@ public class LoginControlador {
 		ResultSet rs = null;
 		Conexion con = Conexion.getCon();
 	    PreparedStatement stmt;
-	    String query = "SELECT * FROM Usuarios where usuario=? and contrasenya=?";
+	    //String query = "SELECT * FROM Usuarios where usuario=? and contrasenya=?";
+		String sql2 = "SELECT *,count(*) as numero FROM Busquedas l RIGHT JOIN Usuarios u "
+				+ "ON l.idUsuario = u.idUsuario where u.usuario=? and u.contrasenya=? "
+				+ "group by l.idUsuario";
 		try {
-			stmt = con.getConexion().prepareStatement(query);
+			stmt = con.getConexion().prepareStatement(sql2);
 			stmt.setString(1, this.usuario);
 			stmt.setString(2, this.pwd);
 			rs = stmt.executeQuery();
@@ -81,11 +84,12 @@ public class LoginControlador {
 	public void creaObjeto(ResultSet rs){
     	UsuarioModel user = new UsuarioModel();
         try {
-        	user.setIdUsuario(rs.getInt(1));
-			user.setAlias(rs.getString(2));
-			user.setPassword(rs.getString(3));
-			user.setFecharegistro(rs.getDate(4));
-			user.setRol(rs.getString(5));
+        	user.setIdUsuario(rs.getInt("idUsuario"));
+			user.setAlias(rs.getString("usuario"));
+			user.setPassword(rs.getString("contrasenya"));
+			user.setFecharegistro(rs.getDate("fecharegistro"));
+			user.setRol(rs.getString("rol"));
+			user.setBusquedas(rs.getInt("numero"));
 			UsuarioModel.setUser(user);
 			InicioVista iv = new InicioVista();
 			iv.frame.setVisible(true);
