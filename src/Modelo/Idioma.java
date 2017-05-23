@@ -6,7 +6,6 @@ import java.util.Properties;
 
 public class Idioma extends Properties{
 	public static Idioma language = null;
-	public FileInputStream  xd = null; 
 	public String idim = null;
 	
 	public Idioma(String idioma){

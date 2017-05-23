@@ -93,6 +93,10 @@ public class InicioVista {
 		lblNewLabel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(tutorial);
 		
+		JLabel tutorial2 = new JLabel("");
+		tutorial2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		frame.getContentPane().add(tutorial2);
+		
 		JLabel lblNewLabel_1 = new JLabel(Idioma.getIdioma().getProperty("descripcion"));
 		lblNewLabel_1.setBackground(new Color(192, 192, 192));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -122,7 +126,10 @@ public class InicioVista {
 		}else{
 			goMain.setEnabled(true);
 		}
-		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){tutorial.setText("Los usuarios invitados, solo pueden realizar 5 busquedas y no pueden añadir letras \n Te quedan: "+total+" busquedas");}
+		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){
+			tutorial.setText(Idioma.getIdioma().getProperty("invitadocheck"));
+			tutorial2.setText(Idioma.getIdioma().getProperty("tequedan")+" "+total+" "+Idioma.getIdioma().getProperty("busquedas2"));
+		}
 		JButton ranking = new JButton(Idioma.getIdioma().getProperty("estadisticas"));
 		panel.add(ranking);
 		vc.goRanking(ranking,loading,frame);
