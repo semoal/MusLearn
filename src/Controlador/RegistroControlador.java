@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import com.mysql.jdbc.Statement;
 
 import Modelo.Conexion;
+import Modelo.Idioma;
 import Modelo.UsuarioModel;
 import Vista.AccesoVista;
 import Vista.RegistroVista;
@@ -35,15 +36,15 @@ public class RegistroControlador {
 							alias.setText("");
 							password.setText("");
 							pass2.setText("");
-							error.setText("Registrado correctamente");
+							error.setText(Idioma.getIdioma().getProperty("registrocorrecto"));
 						}else{
 							error.setText(x);
 						}
 					}else{
-						error.setText("Las contraseñas no coinciden");
+						error.setText(Idioma.getIdioma().getProperty("passwordnoigual"));
 					}
 				}else{
-					error.setText("Falta algún campo por introducir");
+					error.setText(Idioma.getIdioma().getProperty("loginusuarioincorrecto"));
 				}
 			}
 		});

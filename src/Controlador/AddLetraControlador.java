@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import com.mysql.jdbc.Statement;
 
 import Modelo.Conexion;
+import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 import Vista.AccesoVista;
@@ -32,10 +33,10 @@ public class AddLetraControlador {
 					if(ok){
 						titulo.setText("");
 						artista.setText("");
-						error.setText("Letra introducida correctamente");
+						error.setText(Idioma.getIdioma().getProperty("insercionletraok"));
 					}
 				}else{
-					error.setText("Falta algún campo por introducir");
+					error.setText(Idioma.getIdioma().getProperty("errorinsercionletra"));
 				}
 			}
 		});

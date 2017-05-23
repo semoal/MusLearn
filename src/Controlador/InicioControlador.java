@@ -15,10 +15,7 @@ import Vista.PerfilVista;
 import Vista.RankingView;
 
 public class InicioControlador {
-	/**
-	 * Función que dirige al usuario a añadir letras
-	 * @param goMain recibe elJButton que va a ser clickeado
-	 */
+	
 	public void goMain(JButton addLetra,JLabel x,JFrame frame){
 		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){
 			//no puede darle a este boton

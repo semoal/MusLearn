@@ -39,6 +39,7 @@ import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 
 import Modelo.Conexion;
+import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 import Vista.InicioVista;
@@ -52,7 +53,7 @@ public class LyricsControlador {
 	private boolean done;
 	
 	/*
-	 * Acción del boton que realiza todo lo necesario para sacar el video y las lyrics
+	 * AcciÃ³n del boton que realiza todo lo necesario para sacar el video y las lyrics
 	 */
 	public void ejecutaTodo(JButton btnBuscar,JTextField input,JTextArea textArea,JPanel panel,Browser browser,JLabel loading){
 		btnBuscar.addActionListener(new ActionListener() {
@@ -70,7 +71,7 @@ public class LyricsControlador {
 							busqueda(input);
 							done = true;
 						}else{
-							textArea.setText("Url no valida lo siento");
+							textArea.setText(Idioma.getIdioma().getProperty("urlnovalida"));
 						}
 				       if(done){
 				         SwingUtilities.invokeLater(new Runnable(){
@@ -95,20 +96,20 @@ public class LyricsControlador {
 						BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));
 						bw.write(textArea.getText());
 						bw.close();
-						label.setText("Status: exportacion correcta");
+						label.setText(Idioma.getIdioma().getProperty("exportacionvalida"));
 					} catch (IOException oy) {
 						oy.printStackTrace();
-						label.setText("Status: exportacion erronea");
+						label.setText(Idioma.getIdioma().getProperty("exportacioninvalida"));
 					}
 				}else {
-					label.setText("Status: el archivo ya existe");
+					label.setText(Idioma.getIdioma().getProperty("archivoyaexiste"));
 				}
 			}
 		});
 		
 	}
 	/*
-	 * Método que le pasamos por parametro el String de youtube y hace la conversion a JSON para poder obtener el titulo de este
+	 * MÃ©todo que le pasamos por parametro el String de youtube y hace la conversion a JSON para poder obtener el titulo de este
 	 */
 	public String urlAtitulo(JTextField url){
 		String youtubeUrl = url.getText();
@@ -154,7 +155,7 @@ public class LyricsControlador {
 		 } 
 	}
 	/*
-	 * Metemos la url del video de youtube en un iframe que lo mostrará
+	 * Metemos la url del video de youtube en un iframe que lo mostrarÃ¡
 	 */
 	public void meteVideo(JTextField input,JPanel panel,Browser browser){
 		if(!input.getText().isEmpty()){
@@ -176,7 +177,7 @@ public class LyricsControlador {
 				 bean.setSongName(this.tituloCancion[1].trim());
 				 bean.setSongArtist(this.tituloCancion[0].trim());
 			 }else{
-				 textArea.setText("No hemos encontrado letra para esa cancion"); 
+				 textArea.setText(Idioma.getIdioma().getProperty("nohayletra")); 
 			 }
 			 lyrics = searchLyrics.searchLyrics(bean);
 			 if(!lyrics.isEmpty()){
@@ -193,7 +194,7 @@ public class LyricsControlador {
 		 }
 	}
 	/*
-	 * Método que realiza un insert de la busqueda que hace el usuario 
+	 * MÃ©todo que realiza un insert de la busqueda que hace el usuario 
 	 */
 	public void busqueda(JTextField input){
 		ResultSet rs = null;
@@ -229,7 +230,7 @@ public class LyricsControlador {
 			if(rs.next()){
 				creaObjeto(rs,textarea);
 			}else{
-	  			textarea.setText("La letra no existe, puedes añadirla si lo deseas");
+	  			textarea.setText(Idioma.getIdioma().getProperty("quieresintroducirletra"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -260,18 +261,18 @@ public class LyricsControlador {
 	/* Conversor de texto con caracteres especiales para la api */
 	public String replaceAcutesHTML(String str) {
 
-		str = str.replaceAll("&aacute;","á");
-		str = str.replaceAll("&eacute;","é");
-		str = str.replaceAll("&iacute;","í");
-		str = str.replaceAll("&oacute;","ó");
-		str = str.replaceAll("&uacute;","ú");
-		str = str.replaceAll("&Aacute;","Á");
-		str = str.replaceAll("&Eacute;","É");
-		str = str.replaceAll("&Iacute;","Í");
-		str = str.replaceAll("&Oacute;","Ó");
-		str = str.replaceAll("&Uacute;","Ú");
-		str = str.replaceAll("&ntilde;","ñ");
-		str = str.replaceAll("&Ntilde;","Ñ");
+		str = str.replaceAll("&aacute;","Ã¡");
+		str = str.replaceAll("&eacute;","Ã©");
+		str = str.replaceAll("&iacute;","Ã­");
+		str = str.replaceAll("&oacute;","Ã³");
+		str = str.replaceAll("&uacute;","Ãº");
+		str = str.replaceAll("&Aacute;","Ã�");
+		str = str.replaceAll("&Eacute;","Ã‰");
+		str = str.replaceAll("&Iacute;","Ã�");
+		str = str.replaceAll("&Oacute;","Ã“");
+		str = str.replaceAll("&Uacute;","Ãš");
+		str = str.replaceAll("&ntilde;","Ã±");
+		str = str.replaceAll("&Ntilde;","Ã‘");
 
 		return str;
 	}

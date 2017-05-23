@@ -19,6 +19,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import Modelo.Conexion;
+import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 import Vista.InicioVista;
@@ -74,7 +75,7 @@ public class PerfilControlador {
 				Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
 				clpbrd.setContents(stringSelection, null);
 				if(!urlCopy.isEmpty()){
-					copy.setText("Enlace copiado correctamente");
+					copy.setText(Idioma.getIdioma().getProperty("copiarenlace"));
 				}
 			}
 		});

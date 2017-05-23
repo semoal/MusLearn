@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import Modelo.Conexion;
+import Modelo.Idioma;
 import Modelo.UsuarioModel;
 import Vista.AccesoVista;
 import Vista.InvitadoVista;
@@ -34,7 +35,7 @@ public class InvitadoControlador {
 						alias.setText("");
 					}
 				}else{
-					error.setText("Falta algun campo por introducir");
+					error.setText(Idioma.getIdioma().getProperty("errorinsercionletra"));
 				}
 			}
 		});
@@ -63,14 +64,14 @@ public class InvitadoControlador {
 			preparedStatement.setDate(4, new java.sql.Date(us.getFecharegistro().getTime()));
 			preparedStatement.executeUpdate(); 
 			this.ok = true;
-			this.error.setText("Perfecto! Ves al login");
+			this.error.setText(Idioma.getIdioma().getProperty("invitadonombrecorrecto"));
 		}catch (SQLIntegrityConstraintViolationException e) {
 		   this.ok = false;
-		   this.error.setText("Usuario con ese nombre ya existe");
+		   this.error.setText(Idioma.getIdioma().getProperty("invitadonombreincorrecto"));
 		}catch (SQLException e) {
 			e.printStackTrace();
 			this.ok = false;
-			this.error.setText("Consulta no valida");
+			this.error.setText(Idioma.getIdioma().getProperty("consultanovalida"));
 		}
 	}
 	

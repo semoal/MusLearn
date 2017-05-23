@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import Modelo.Conexion;
+import Modelo.Idioma;
 import Modelo.UsuarioModel;
 import Vista.InicioVista;
 
@@ -74,13 +75,13 @@ String sql = "SELECT *,count(*) as numero FROM Letras l LEFT JOIN Usuarios u ON 
 						}
 						bw.newLine();
 						bw.close();
-						label.setText("Status: exportacion correcta");
+						label.setText(Idioma.getIdioma().getProperty("exportacionvalida"));
 					} catch (IOException oy) {
 						oy.printStackTrace();
-						label.setText("Status: exportacion erronea");
+						label.setText(Idioma.getIdioma().getProperty("exportacioninvalida"));
 					}
 				}else {
-					label.setText("Status: el archivo ya existe");
+					label.setText(Idioma.getIdioma().getProperty("archivoyaexiste"));
 				}
 				
 			}

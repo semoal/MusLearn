@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import Modelo.Conexion;
+import Modelo.Idioma;
 import Modelo.UsuarioModel;
 import Vista.AccesoVista;
 import Vista.InicioVista;
@@ -41,7 +42,7 @@ public class LoginControlador {
 				  			consultaBD(error);
 				  			done = true;
 				  		}else{
-				  			error.setText("Status: falta algun campo por introducir");
+				  			error.setText(Idioma.getIdioma().getProperty("loginusuarioincorrecto"));
 				  		}	
 				       if(done){
 				         SwingUtilities.invokeLater(new Runnable(){
@@ -73,7 +74,7 @@ public class LoginControlador {
 			if(rs.next()){
 				creaObjeto(rs);
 			}else{
-	  			error.setText("Status: usuario o contraseÃ±a incorrecta");
+	  			error.setText(Idioma.getIdioma().getProperty("logincontraseñaincorrecta"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

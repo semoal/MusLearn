@@ -71,7 +71,7 @@ public class PerfilVista {
 		copy.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(copy);
 		
-		JLabel numeroBusquedas = new JLabel(Idioma.getIdioma().getProperty("hashecho")+UsuarioModel.getUser().getBusquedas()+Idioma.getIdioma().getProperty("busquedas"));
+		JLabel numeroBusquedas = new JLabel(Idioma.getIdioma().getProperty("hashecho")+" "+UsuarioModel.getUser().getBusquedas()+" "+Idioma.getIdioma().getProperty("busquedas"));
 		copy.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(numeroBusquedas);
 		
