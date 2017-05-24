@@ -47,6 +47,27 @@ String sql = "SELECT *,count(*) as numero FROM Letras l LEFT JOIN Usuarios u ON 
 		return list;
 	}
 	
+	public ArrayList<UsuarioModel> ranking1(){
+		ResultSet rs = null;
+		Conexion cn = Conexion.getCon();
+		Statement stmt;
+		ArrayList<UsuarioModel> list1 = new ArrayList<UsuarioModel>();
+		try {
+String sql = "select urlBusqueda,count(*) as busquedas from Busquedas b group by b.urlbusqueda order by busquedas DESC";
+			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			rs = preparedStatement.executeQuery(); 
+			while(rs.next()){
+				UsuarioModel usu = new UsuarioModel();
+				usu.setAlias(rs.getString("urlBusqueda"));
+				usu.setNumeroLetras(rs.getInt("busquedas"));
+				list1.add(usu);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list1;
+	}
+	
 	
 	public void volverMain(JButton button, JFrame frame){
 		button.addActionListener(new ActionListener() {

@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -29,9 +30,12 @@ import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 public class RankingView {
 
@@ -73,12 +77,15 @@ public class RankingView {
 		lblStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblStatus);
 		
+		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		panel_1.add(scrollPane_1);
+		
+		//tabla top
 		
 		table = new JTable();
 		table.setEnabled(false);
@@ -87,11 +94,13 @@ public class RankingView {
 		
 		ArrayList<UsuarioModel> list = rk.ranking();
 		
-		DefaultTableModel model = new DefaultTableModel(new Object[]{Idioma.getIdioma().getProperty("alias"),Idioma.getIdioma().getProperty("letras")},0);
+		DefaultTableModel model = new DefaultTableModel(new Object[]{Idioma.getIdioma().getProperty("alias"), Idioma.getIdioma().getProperty("insercionesletras")},0);
 
 		for(int i=0;i<list.size();i++){
 			model.addRow(new Object[]{list.get(i).getAlias(),list.get(i).getNumeroLetras()});
 		}
+		
+		//exportar
 		
 		List<String> export = new ArrayList<String>();
 		int row =  model.getRowCount();
@@ -100,9 +109,24 @@ public class RankingView {
               export.add(model.getValueAt(x, 0).toString() +" "+ model.getValueAt(x, 1).toString());
         }
         
-        //System.out.println(export);
+        //url mas buscada
+        ArrayList<UsuarioModel> list1 = rk.ranking1();
+        
+        DefaultTableModel model1 = new DefaultTableModel(new Object[]{Idioma.getIdioma().getProperty("cancion"), Idioma.getIdioma().getProperty("numerobusquedas")},0);
+       
+        for(int x=0;x<list1.size();x++){
+			model1.addRow(new Object[]{list1.get(x).getAlias(),list1.get(x).getNumeroLetras()});
+		}
+        
+        
+        JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {Idioma.getIdioma().getProperty("topusuarios"), Idioma.getIdioma().getProperty("videomasbuscado")}));
+		frame.getContentPane().add(comboBox);
 		
+		//default
 		table.setModel(model);
+		
+		
 		
 		JPanel panel2 = new JPanel();
 		frame.getContentPane().add(panel2);
@@ -114,6 +138,28 @@ public class RankingView {
 		JButton btnVolver = new JButton(Idioma.getIdioma().getProperty("volver"));
 		panel2.add(btnVolver);
 		btnVolver.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					 String opcion = (String) comboBox.getSelectedItem();
+					if(opcion == Idioma.getIdioma().getProperty("topusuarios")){
+						table.setModel(model);
+						btnExportar.enable();
+						btnExportar.setEnabled(true);
+					}else if(opcion == Idioma.getIdioma().getProperty("videomasbuscado")){
+						table.setModel(model1);
+						btnExportar.disable();
+						btnExportar.setEnabled(false);
+					}
+					
+					} catch(Exception ioe) {ioe.printStackTrace();}
+				
+			}
+		});
+		
 		
 		//Acción boton volver main
 		rk.volverMain(btnVolver,frame);
