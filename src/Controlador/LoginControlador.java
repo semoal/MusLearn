@@ -74,7 +74,7 @@ public class LoginControlador {
 			if(rs.next()){
 				creaObjeto(rs);
 			}else{
-	  			error.setText(Idioma.getIdioma().getProperty("logincontraseñaincorrecta"));
+	  			error.setText(Idioma.getIdioma().getProperty("logincontraseï¿½aincorrecta"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,6 +85,7 @@ public class LoginControlador {
 	public void creaObjeto(ResultSet rs){
     	UsuarioModel user = new UsuarioModel();
         try {
+        	System.out.println(rs.getInt("idUsuario"));
         	user.setIdUsuario(rs.getInt("idUsuario"));
 			user.setAlias(rs.getString("usuario"));
 			user.setPassword(rs.getString("contrasenya"));

@@ -133,23 +133,9 @@ public class LyricsControlador {
 	 */
 	public void videoACancion(JTextField input,JTextArea textArea){
 		this.urlYoutube = input.getText();
-		if(this.tituloCancionTemp.contains("(Official)") || 
-		   this.tituloCancionTemp.contains("[Official Video]") || 
-		   this.tituloCancionTemp.contains("(Official Video)") ||
-		   this.tituloCancionTemp.contains("(Lyric Video)") ||
-		   this.tituloCancionTemp.contains("(Official Audio)") ||
-		   this.tituloCancionTemp.contains("(Video Oficial)")
-
-		 )
-		 {
-			this.tituloCancionTemp = this.tituloCancionTemp.replace("(Official)", "");
-			this.tituloCancionTemp = this.tituloCancionTemp.replace("[Official Video]", "");
-			this.tituloCancionTemp = this.tituloCancionTemp.replace("(Official Video)", "");
-			this.tituloCancionTemp = this.tituloCancionTemp.replace("(Lyric Video)", "");
-			this.tituloCancionTemp = this.tituloCancionTemp.replace("(Official Audio)", "");
-			this.tituloCancionTemp = this.tituloCancionTemp.replace("(Video Oficial)", "");
+		if(this.tituloCancionTemp.contains("\\(.+?\\)")) {
+			this.tituloCancionTemp = this.tituloCancionTemp.replaceAll("\\(.+?\\)", "");
 			this.tituloCancion = this.tituloCancionTemp.split("-",0);
-		 
 		 }else{
 			this.tituloCancion = this.tituloCancionTemp.split("-",0);
 		 } 
@@ -172,10 +158,12 @@ public class LyricsControlador {
 		 SearchLyrics searchLyrics = new SearchLyrics();
 		 LyricsServiceBean bean = new LyricsServiceBean();
 		 List<Lyrics> lyrics;
+		 boolean ok = false;
+		 ok=false;
 		 try {
 			 if(this.tituloCancion.length>1){
-				 bean.setSongName(this.tituloCancion[1].trim());
 				 bean.setSongArtist(this.tituloCancion[0].trim());
+				 bean.setSongName(this.tituloCancion[1].trim());
 			 }else{
 				 textArea.setText(Idioma.getIdioma().getProperty("nohayletra")); 
 			 }
@@ -185,11 +173,24 @@ public class LyricsControlador {
 					 String clean = replaceAcutesHTML(lyric.getText());
 					 textArea.setText(clean);
 				     textArea.setCaretPosition(0);
+				     ok=true;
 				 } 
-			 }else{
-				 consultaEnLetras(textArea,tituloCancion);
+			 }else if(ok==false){
+				 bean.setSongArtist(this.tituloCancion[1].trim());
+				 bean.setSongName(this.tituloCancion[0].trim());			 
+				 lyrics = searchLyrics.searchLyrics(bean);
+				 if(!lyrics.isEmpty()){
+					 for (Lyrics lyric : lyrics) {
+						 String clean = replaceAcutesHTML(lyric.getText());
+						 textArea.setText(clean);
+					     textArea.setCaretPosition(0);
+					     ok=true;
+					 }  
+				 }else{
+					 consultaEnLetras(textArea,tituloCancion);
+					 ok=true;
+				 }	 
 			 }
-			 
 		 } catch (SearchLyricsException e) {
 		 }
 	}
