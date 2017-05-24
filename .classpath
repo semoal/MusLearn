@@ -12,5 +12,8 @@
 	<classpathentry kind="lib" path="/Users/sergiomoreno/Desktop/jars/jsoup-1.7.2.jar"/>
 	<classpathentry kind="lib" path="/Users/sergiomoreno/Desktop/jars/java-json.jar"/>
 	<classpathentry kind="lib" path="/Users/sergiomoreno/Desktop/jars/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="/Users/sergiomoreno/Downloads/itext5-5.5.11/itext5-itextpdf-5.5.11.jar"/>
+	<classpathentry kind="lib" path="/Users/sergiomoreno/Downloads/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="/Users/sergiomoreno/Downloads/jcommon-1.0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

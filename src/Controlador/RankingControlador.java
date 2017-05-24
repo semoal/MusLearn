@@ -1,5 +1,5 @@
 package Controlador;
-
+ 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -14,17 +14,40 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+ 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+import org.jfree.util.Rotation;
+ 
+ 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+ 
 import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 import Vista.InicioVista;
-
+ 
 public class RankingControlador {
 	
 	public ArrayList<UsuarioModel> ranking(){
@@ -58,7 +81,7 @@ String sql = "select urlBusqueda,count(*) as busquedas from Busquedas b group by
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
 			rs = preparedStatement.executeQuery(); 
 			while(rs.next()){
-				LetraModel letra = new LetraModel() ;
+				LetraModel letra = new LetraModel();
 				letra.setUrlYoutube(rs.getString("urlBusqueda"));
 				letra.setBusquedasGlobales(rs.getInt("busquedas"));
 				list1.add(letra);
@@ -79,35 +102,119 @@ String sql = "select urlBusqueda,count(*) as busquedas from Busquedas b group by
 			}
 		});	
 	}
-	
-	public void exportarRank(JButton button,List<String>export,JLabel label){
+ 
+	public void exportarRank(JButton button, ArrayList<UsuarioModel> list, JLabel label) throws DocumentException{
 		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-				String fichero = "ranking-"+timeStamp+".txt";
-				File x = new File(fichero);
-				if(!x.exists()){
-					try {
-						BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));
-						bw.write("Ranking con fecha en: "+timeStamp);
-						bw.newLine();
-						for(int i=0;i<export.size();i++){
-							bw.write(export.get(i));
-							bw.newLine();
-						}
-						bw.newLine();
-						bw.close();
-						label.setText(Idioma.getIdioma().getProperty("exportacionvalida"));
-					} catch (IOException oy) {
-						oy.printStackTrace();
-						label.setText(Idioma.getIdioma().getProperty("exportacioninvalida"));
+			public void actionPerformed(ActionEvent e){
+				String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+					DefaultPieDataset pieDataset = new DefaultPieDataset();
+					for (int i=0; i<list.size();i++){
+						pieDataset.setValue(list.get(i).getAlias()+" ("+list.get(i).getNumeroLetras()+")", new Integer(list.get(i).getNumeroLetras()));
 					}
-				}else {
-					label.setText(Idioma.getIdioma().getProperty("archivoyaexiste"));
-				}
-				
+					
+			        JFreeChart chart = ChartFactory.createPieChart3D(
+			            Idioma.getIdioma().getProperty("introducciondeletras")+ timeStamp, 
+			            pieDataset,
+			            true, 
+			            true, 
+			            false 
+			        );
+					
+	
+			        try {
+			            ChartUtilities.saveChartAsJPEG(new File("ranking_foto.jpg"), chart, 500, 300);
+			        } catch (Exception r) {
+			          
+			        }
+			        
+					Document documento = new Document();
+					FileOutputStream ficheroPdf = null;
+					try {
+						ficheroPdf = new FileOutputStream("ranking.pdf");
+						try {
+							PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(20);
+						} catch (DocumentException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			 
+						label.setText(Idioma.getIdioma().getProperty("exportacionvalida"));
+					} catch (FileNotFoundException r) {
+						r.printStackTrace();
+					}
+			 
+					documento.open();
+			        try
+			        {
+			        	Image foto = Image.getInstance("ranking_foto.jpg");
+			        	foto.scaleToFit(600, 600);
+			        	foto.setAlignment(Chunk.ALIGN_MIDDLE);
+			        	documento.add(foto);
+			        }
+			        catch ( Exception r ) {
+			        	r.printStackTrace();
+			        }
+					documento.close();
 			}
-		});		
+ 
+		});
 	}
 	
+	public void exportarBusquedas(JButton button, ArrayList<LetraModel> list, JLabel label) throws DocumentException{
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				PerfilControlador xd = new PerfilControlador();
+				String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+			    DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+				final String top = "Top 10";
+					for (int i=0; i<10;i++){
+					      dataset.addValue(list.get(i).getBusquedasGlobales() , xd.urlAtitulo(list.get(i).getUrlYoutube()) , top );
+					}
+
+					
+			        JFreeChart chart = ChartFactory.createBarChart(
+			                Idioma.getIdioma().getProperty("busq"), 
+			                Idioma.getIdioma().getProperty("cancionesplural"), Idioma.getIdioma().getProperty("busq2"), 
+			                dataset,PlotOrientation.VERTICAL, 
+			                true, true, false);
+					
+	
+			        try {
+			            ChartUtilities.saveChartAsJPEG(new File("ranking_busquedas.jpg"), chart, 500, 300);
+			        } catch (Exception r) {
+			          
+			        }
+			        
+					Document documento = new Document();
+					FileOutputStream ficheroPdf = null;
+					try {
+						ficheroPdf = new FileOutputStream("busquedas.pdf");
+						try {
+							PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(20);
+						} catch (DocumentException e1) {
+							e1.printStackTrace();
+						}
+			 
+						label.setText(Idioma.getIdioma().getProperty("exportacionvalida"));
+					} catch (FileNotFoundException r) {
+						r.printStackTrace();
+					}
+			 
+					documento.open();
+			        try {
+			        	Image foto = Image.getInstance("ranking_busquedas.jpg");
+			        	foto.scaleToFit(600, 600);
+			        	foto.setAlignment(Chunk.ALIGN_MIDDLE);
+			        	documento.add(foto);
+			        }catch ( Exception r ) {
+			        	r.printStackTrace();
+			        }
+					documento.close();
+			}
+ 
+		});
+	}
 }
+ 
+ 
+ 

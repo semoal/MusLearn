@@ -60,21 +60,21 @@ public class AccesoVista {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		
-		JButton btnAcceder = new JButton("Acceder");
+		JButton btnAcceder = new JButton("Login");
 		ac.irAcceder(btnAcceder,frame);
 		panel.add(btnAcceder);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		panel.add(horizontalStrut);
 		
-		JButton btnRegistrarse = new JButton("Registrarse");
+		JButton btnRegistrarse = new JButton("Register");
 		ac.irRegistro(btnRegistrarse,frame);
 		panel.add(btnRegistrarse);
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		panel.add(horizontalStrut_1);
 		
-		JButton btnInvitado = new JButton("Invitado");
+		JButton btnInvitado = new JButton("Guest");
 		ac.irInvitado(btnInvitado,frame);
 		panel.add(btnInvitado);
 		
@@ -103,7 +103,7 @@ public class AccesoVista {
 			}
 		});
 		
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Espanyol", "Ingles"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Ingles", "Espanyol"}));
 		frame.getContentPane().add(comboBox, BorderLayout.NORTH);
 	}
 

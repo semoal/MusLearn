@@ -13,6 +13,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.itextpdf.text.DocumentException;
+
 import Controlador.PerfilControlador;
 import Controlador.RankingControlador;
 import Modelo.Idioma;
@@ -117,7 +119,7 @@ public class RankingView {
         
         DefaultTableModel model1 = new DefaultTableModel(new Object[]{Idioma.getIdioma().getProperty("cancion"), Idioma.getIdioma().getProperty("numerobusquedas")},0);
        
-        for(int x=0;x<list1.size();x++){
+        for(int x=0;x<10;x++){
 			model1.addRow(new Object[]{pc.urlAtitulo(list1.get(x).getUrlYoutube()),list1.get(x).getBusquedasGlobales()});
 		}
         
@@ -145,19 +147,28 @@ public class RankingView {
 		
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				try {
 					 String opcion = (String) comboBox.getSelectedItem();
 					if(opcion == Idioma.getIdioma().getProperty("topusuarios")){
+						lblNewLabel.setText("Ranking");
 						table.setModel(model);
 						btnExportar.enable();
 						btnExportar.setEnabled(true);
+						try {
+							rk.exportarRank(btnExportar, list,lblStatus);
+						} catch (DocumentException e1) {
+							e1.printStackTrace();
+						}
 					}else if(opcion == Idioma.getIdioma().getProperty("videomasbuscado")){
+						lblNewLabel.setText("TOP 10");
 						table.setModel(model1);
-						btnExportar.disable();
-						btnExportar.setEnabled(false);
+						btnExportar.enable();
+						btnExportar.setEnabled(true);
+						try {
+							rk.exportarBusquedas(btnExportar, list1,lblStatus);
+						} catch (DocumentException e1) {
+						}
 					}
-					
 					} catch(Exception ioe) {ioe.printStackTrace();}
 				
 			}
@@ -166,8 +177,14 @@ public class RankingView {
 		
 		//Acción boton volver main
 		rk.volverMain(btnVolver,frame);
-		
-		rk.exportarRank(btnExportar, export,lblStatus);
+		try {
+			rk.exportarRank(btnExportar, list,lblStatus);
+		} catch (DocumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
 	}
 
 }
