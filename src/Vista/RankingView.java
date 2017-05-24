@@ -13,8 +13,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Controlador.PerfilControlador;
 import Controlador.RankingControlador;
 import Modelo.Idioma;
+import Modelo.LetraModel;
 import Modelo.UsuarioModel;
 
 import javax.swing.JButton;
@@ -110,12 +112,13 @@ public class RankingView {
         }
         
         //url mas buscada
-        ArrayList<UsuarioModel> list1 = rk.ranking1();
+        ArrayList<LetraModel> list1 = rk.ranking1();
+        PerfilControlador pc = new PerfilControlador();
         
         DefaultTableModel model1 = new DefaultTableModel(new Object[]{Idioma.getIdioma().getProperty("cancion"), Idioma.getIdioma().getProperty("numerobusquedas")},0);
        
         for(int x=0;x<list1.size();x++){
-			model1.addRow(new Object[]{list1.get(x).getAlias(),list1.get(x).getNumeroLetras()});
+			model1.addRow(new Object[]{pc.urlAtitulo(list1.get(x).getUrlYoutube()),list1.get(x).getBusquedasGlobales()});
 		}
         
         

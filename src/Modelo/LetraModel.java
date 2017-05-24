@@ -9,6 +9,7 @@ public class LetraModel {
 	private String letra;
 	private String urlYoutube;
 	private Date fechainsercion;
+	private int busquedasGlobales;
 	
 	public LetraModel() {
 		this.idUsuario = 0;
@@ -16,7 +17,16 @@ public class LetraModel {
 		this.artista = "";
 		this.urlYoutube = "";
 		this.letra = "";
+		this.busquedasGlobales = 0;
 		this.fechainsercion = null;
+	}
+
+	public int getBusquedasGlobales() {
+		return busquedasGlobales;
+	}
+
+	public void setBusquedasGlobales(int busquedasGlobales) {
+		this.busquedasGlobales = busquedasGlobales;
 	}
 
 	public int getIdUsuario() {
