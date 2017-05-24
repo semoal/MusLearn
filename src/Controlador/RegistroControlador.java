@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import com.mysql.jdbc.Statement;
 
+import Encriptacion.Encriptacion;
 import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.UsuarioModel;
@@ -64,11 +65,13 @@ public class RegistroControlador {
 		ResultSet rs = null;
 		Conexion cn = Conexion.getCon();
     	Statement stmt;
+    	Encriptacion md5 = new Encriptacion();
+    	
 		try {
 			String sql = "INSERT INTO Usuarios (usuario, contrasenya,fecharegistro,rol) VALUES (?, ?, ?, ?)";
 			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
 			preparedStatement.setString(1, us.getAlias());
-			preparedStatement.setString(2, us.getPassword());
+			preparedStatement.setString(2, md5.encriptar(us.getPassword()));
 			preparedStatement.setDate(3, new java.sql.Date(us.getFecharegistro().getTime()));
 			preparedStatement.setString(4, us.getRol());
 			preparedStatement.executeUpdate(); 

@@ -37,7 +37,7 @@ public class SplashVista extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		JLabel lblCargandoMuslearn = new JLabel("Cargando MusLearn...");
+		JLabel lblCargandoMuslearn = new JLabel("Loading MusLearn...");
 		lblCargandoMuslearn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblCargandoMuslearn.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCargandoMuslearn.setFont(new Font("Mangal", Font.BOLD, 22));
@@ -61,7 +61,7 @@ public class SplashVista extends JFrame {
 		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel = new JLabel("Cargando...");
+		JLabel lblNewLabel = new JLabel("Loading...");
 		lblNewLabel.setFont(new Font("Mangal", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;

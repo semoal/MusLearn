@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import Encriptacion.Encriptacion;
 import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.UsuarioModel;
@@ -62,14 +63,16 @@ public class LoginControlador {
 		ResultSet rs = null;
 		Conexion con = Conexion.getCon();
 	    PreparedStatement stmt;
-	    //String query = "SELECT * FROM Usuarios where usuario=? and contrasenya=?";
-		String sql2 = "SELECT *,count(*) as numero FROM Busquedas l RIGHT JOIN Usuarios u "
-				+ "ON l.idUsuario = u.idUsuario where u.usuario=? and u.contrasenya=? "
-				+ "group by l.idUsuario";
+    	Encriptacion md5 = new Encriptacion();
+
+	    String query = "SELECT * FROM Usuarios where usuario=? and contrasenya=?";
+		//String sql2 = "SELECT *,count(*) as numero FROM Busquedas l RIGHT JOIN Usuarios u "
+				//+ "ON l.idUsuario = u.idUsuario where u.usuario=? and u.contrasenya=? "
+				//+ "group by l.idUsuario";
 		try {
-			stmt = con.getConexion().prepareStatement(sql2);
+			stmt = con.getConexion().prepareStatement(query);
 			stmt.setString(1, this.usuario);
-			stmt.setString(2, this.pwd);
+			stmt.setString(2, md5.encriptar(this.pwd));
 			rs = stmt.executeQuery();
 			if(rs.next()){
 				creaObjeto(rs);
@@ -91,7 +94,7 @@ public class LoginControlador {
 			user.setPassword(rs.getString("contrasenya"));
 			user.setFecharegistro(rs.getDate("fecharegistro"));
 			user.setRol(rs.getString("rol"));
-			user.setBusquedas(rs.getInt("numero"));
+			//user.setBusquedas(rs.getInt("numero"));
 			UsuarioModel.setUser(user);
 			InicioVista iv = new InicioVista();
 			iv.frame.setVisible(true);
