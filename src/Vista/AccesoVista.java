@@ -98,7 +98,6 @@ public class AccesoVista {
 					  btnRegistrarse.setText(Idioma.getIdioma().getProperty("registrarse"));
 					  frame.repaint();
 					  frame.invalidate();
-					  System.out.println(Idioma.getIdioma().idim);
 					} catch(Exception ioe) {ioe.printStackTrace();}
 				
 			}
