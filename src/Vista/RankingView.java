@@ -119,7 +119,7 @@ public class RankingView {
         
         DefaultTableModel model1 = new DefaultTableModel(new Object[]{Idioma.getIdioma().getProperty("cancion"), Idioma.getIdioma().getProperty("numerobusquedas")},0);
        
-        for(int x=0;x<10;x++){
+        for(int x=0;x<list1.size();x++){
 			model1.addRow(new Object[]{pc.urlAtitulo(list1.get(x).getUrlYoutube()),list1.get(x).getBusquedasGlobales()});
 		}
         

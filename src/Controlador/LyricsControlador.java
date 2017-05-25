@@ -132,13 +132,10 @@ public class LyricsControlador {
 	 * Pasamos una url de youtube del usuario al titulo de este
 	 */
 	public void videoACancion(JTextField input,JTextArea textArea){
-		this.urlYoutube = input.getText();
-		if(this.tituloCancionTemp.contains("\\(.+?\\)")) {
-			this.tituloCancionTemp = this.tituloCancionTemp.replaceAll("\\(.+?\\)", "");
-			this.tituloCancion = this.tituloCancionTemp.split("-",0);
-		 }else{
-			this.tituloCancion = this.tituloCancionTemp.split("-",0);
-		 } 
+		this.urlYoutube = input.getText();		
+		this.tituloCancionTemp = this.tituloCancionTemp.replaceAll("\\([^()]*\\)", "");
+		this.tituloCancionTemp = this.tituloCancionTemp.replaceAll("\\[([^\\]]*)\\]", "");
+		this.tituloCancion = this.tituloCancionTemp.split("-",0);
 	}
 	/*
 	 * Metemos la url del video de youtube en un iframe que lo mostrarÃ¡
@@ -147,7 +144,7 @@ public class LyricsControlador {
 		if(!input.getText().isEmpty()){
 			 String videoUrlTemp= input.getText();
 		     String videoUrl = videoUrlTemp.replace("watch?v=","embed/");
-		     String x = "<iframe width=\"420\" height=\"345\" src=\""+videoUrl+"?rel=0&autoplay=1 allowfullscreen\"></iframe>";
+		     String x = "<iframe width=\"100%\" height=\"345\" src=\""+videoUrl+"?rel=0&autoplay=1 allowfullscreen\"></iframe>";
 		     browser.loadHTML(x);
 		}
 	}
@@ -164,6 +161,8 @@ public class LyricsControlador {
 			 if(this.tituloCancion.length>1){
 				 bean.setSongArtist(this.tituloCancion[0].trim());
 				 bean.setSongName(this.tituloCancion[1].trim());
+				 System.out.println("Artista:"+this.tituloCancion[0]);
+				 System.out.println("Cancion:"+this.tituloCancion[1]);
 			 }else{
 				 textArea.setText(Idioma.getIdioma().getProperty("nohayletra")); 
 			 }
@@ -177,7 +176,10 @@ public class LyricsControlador {
 				 } 
 			 }else if(ok==false){
 				 bean.setSongArtist(this.tituloCancion[1].trim());
-				 bean.setSongName(this.tituloCancion[0].trim());			 
+				 bean.setSongName(this.tituloCancion[0].trim());		
+				 System.out.println("Artista:"+this.tituloCancion[1]);
+				 System.out.println("Cancion:"+this.tituloCancion[0]);
+				 System.out.println("ultimo if");
 				 lyrics = searchLyrics.searchLyrics(bean);
 				 if(!lyrics.isEmpty()){
 					 for (Lyrics lyric : lyrics) {
@@ -262,18 +264,18 @@ public class LyricsControlador {
 	/* Conversor de texto con caracteres especiales para la api */
 	public String replaceAcutesHTML(String str) {
 
-		str = str.replaceAll("&aacute;","Ã¡");
-		str = str.replaceAll("&eacute;","Ã©");
-		str = str.replaceAll("&iacute;","Ã­");
-		str = str.replaceAll("&oacute;","Ã³");
-		str = str.replaceAll("&uacute;","Ãº");
-		str = str.replaceAll("&Aacute;","Ã�");
-		str = str.replaceAll("&Eacute;","Ã‰");
-		str = str.replaceAll("&Iacute;","Ã�");
-		str = str.replaceAll("&Oacute;","Ã“");
-		str = str.replaceAll("&Uacute;","Ãš");
-		str = str.replaceAll("&ntilde;","Ã±");
-		str = str.replaceAll("&Ntilde;","Ã‘");
+		str = str.replaceAll("&aacute;","á");
+		str = str.replaceAll("&eacute;","é");
+		str = str.replaceAll("&iacute;","í");
+		str = str.replaceAll("&oacute;","ó");
+		str = str.replaceAll("&uacute;","ú");
+		str = str.replaceAll("&Aacute;","Á");
+		str = str.replaceAll("&Eacute;","É");
+		str = str.replaceAll("&Iacute;","Í");
+		str = str.replaceAll("&Oacute;","Ó");
+		str = str.replaceAll("&Uacute;","Ú");
+		str = str.replaceAll("&ntilde;","ñ");
+		str = str.replaceAll("&Ntilde;","Ñ");
 
 		return str;
 	}

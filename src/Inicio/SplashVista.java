@@ -25,6 +25,7 @@ public class SplashVista extends JFrame {
 
 
 	public SplashVista() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -103,7 +104,7 @@ public void iniciarHilo(){
 					lblPorcentaje.setText(x+"%");
 					lblPorcentaje.setText(+x+"%");
 					x++;
-					Thread.sleep(50);
+					Thread.sleep(30);
 				}	
 				dispose();
 				AccesoVista window = new AccesoVista();
