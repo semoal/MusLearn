@@ -19,8 +19,7 @@ import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
-import Vista.AccesoVista;
-import Vista.InicioVista;
+import Vista.InicioVista2;
 
 public class AddLetraControlador {
 	private boolean ok;
@@ -44,7 +43,6 @@ public class AddLetraControlador {
 	
 	public void creaLetra(JTextField titulo,JTextField artista ,JTextArea letra){
 		LetraModel lm = new LetraModel();
-		//USUARIO QUE INTRODUCE LA LETRA 
 		lm.setIdUsuario(UsuarioModel.getUser().getidUsuario());
 		lm.setTitulo(titulo.getText());
 		lm.setArtista(artista.getText());
@@ -55,11 +53,10 @@ public class AddLetraControlador {
 	
 	public void insertaLetra(LetraModel lm){
 		ResultSet rs = null;
-		Conexion cn = Conexion.getCon();
 		Statement stmt;
 		try {
 			String sql = "INSERT INTO Letras (idUsuario, titulo, artista, letra,fechainsercion) VALUES (?, ?, ?, ?, ?)";
-			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			PreparedStatement preparedStatement = Conexion.getCon().getConexion().prepareStatement(sql);
 			preparedStatement.setInt(1, UsuarioModel.getUser().getidUsuario());
 			preparedStatement.setString(2, lm.getTitulo());
 			preparedStatement.setString(3,lm.getArtista());
@@ -77,7 +74,7 @@ public class AddLetraControlador {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				x.dispose();
-				InicioVista inc = new InicioVista();
+				InicioVista2 inc = new InicioVista2();
 				inc.frame.setVisible(true);
 			}
 		});

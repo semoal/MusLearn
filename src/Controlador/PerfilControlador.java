@@ -22,7 +22,7 @@ import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
-import Vista.InicioVista;
+import Vista.InicioVista2;
 
 import java.awt.datatransfer.*;
 import java.awt.Toolkit;
@@ -30,12 +30,11 @@ import java.awt.Toolkit;
 public class PerfilControlador {
 	public ArrayList<LetraModel> getLetrasBuscadas(){
 		ResultSet rs = null;
-		Conexion cn = Conexion.getCon();
 		Statement stmt;
 		ArrayList<LetraModel> list = new ArrayList<LetraModel>();
 		try {
 			String sql = "SELECT * FROM Busquedas b left join Usuarios u on u.idUsuario=b.idUsuario where u.idUsuario=?";
-			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			PreparedStatement preparedStatement = Conexion.getCon().getConexion().prepareStatement(sql);
 			preparedStatement.setInt(1, UsuarioModel.getUser().getidUsuario());
 			rs = preparedStatement.executeQuery(); 
 			while(rs.next()){
@@ -84,7 +83,7 @@ public class PerfilControlador {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				InicioVista inc = new InicioVista();
+				InicioVista2 inc = new InicioVista2();
 				inc.frame.setVisible(true);
 			}
 		});	

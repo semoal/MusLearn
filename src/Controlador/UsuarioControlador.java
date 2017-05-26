@@ -49,11 +49,10 @@ public class UsuarioControlador {
 	//Metodo que haga el insert
 	public void insertUsuario(UsuarioModel us){
 		ResultSet rs = null;
-		Conexion cn = new Conexion();
     	Statement stmt;
 		try {
 			String sql = "INSERT INTO usuarios (alias, contrasenya) VALUES (?, ?)";
-			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			PreparedStatement preparedStatement = Conexion.getCon().getConexion().prepareStatement(sql);
 			preparedStatement.setString(1, us.getAlias());
 			preparedStatement.setDate(2, new java.sql.Date(us.getFecharegistro().getTime()));
 			preparedStatement.executeUpdate(); 

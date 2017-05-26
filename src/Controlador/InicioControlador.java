@@ -9,10 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import Modelo.UsuarioModel;
-import Vista.AnyadirLetra;
-import Vista.LyricsVista;
-import Vista.PerfilVista;
-import Vista.RankingView;
+import Vista.LyricsVista2;
+import Vista.AccesoVista2;
+import Vista.AnyadirLetra2;
+import Vista.PerfilVista2;
+import Vista.RankingView2;
 
 public class InicioControlador {
 	
@@ -27,7 +28,7 @@ public class InicioControlador {
 					new Thread(new Runnable(){
 				    @Override
 				    public void run(){
-				    	AnyadirLetra window = new AnyadirLetra();
+				    	AnyadirLetra2 window = new AnyadirLetra2();
 				    	frame.dispose();
 						window.frame.setVisible(true);
 				       if(window.frame.isVisible()){
@@ -54,7 +55,7 @@ public class InicioControlador {
 				new Thread(new Runnable(){
 			    @Override
 			    public void run(){
-			    	RankingView window = new RankingView();
+			    	RankingView2 window = new RankingView2();
 					window.frame.setVisible(true);
 			    	frame.dispose();
 			       if(window.frame.isVisible()){
@@ -80,7 +81,7 @@ public class InicioControlador {
 				new Thread(new Runnable(){
 			    @Override
 			    public void run(){
-			    	LyricsVista window = new LyricsVista();
+			    	LyricsVista2 window = new LyricsVista2();
 					window.frame.setVisible(true);
 			    	frame.dispose();
 			       if(window.frame.isVisible()){
@@ -103,7 +104,7 @@ public class InicioControlador {
 				new Thread(new Runnable(){
 			    @Override
 			    public void run(){
-			    	PerfilVista window = new PerfilVista();
+			    	PerfilVista2 window = new PerfilVista2();
 					window.frame.setVisible(true);
 			    	frame.dispose();
 			       if(window.frame.isVisible()){
@@ -115,6 +116,16 @@ public class InicioControlador {
 			       }
 			    }
 				}).start();
+			}
+		});
+	}
+	
+	public void logout(JButton button,JFrame frame){
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccesoVista2 ic = new AccesoVista2();
+				ic.frame.setVisible(true);
+				frame.dispose();
 			}
 		});
 	}

@@ -42,7 +42,7 @@ import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.LetraModel;
 import Modelo.UsuarioModel;
-import Vista.InicioVista;
+import Vista.InicioVista2;
 
 public class LyricsControlador {
 	private String tituloCancionTemp;
@@ -59,7 +59,6 @@ public class LyricsControlador {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    loading.setVisible(true);
-
 				new Thread(new Runnable(){
 				    @Override
 				    public void run(){
@@ -96,12 +95,15 @@ public class LyricsControlador {
 						BufferedWriter bw = new BufferedWriter(new FileWriter(fichero));
 						bw.write(textArea.getText());
 						bw.close();
+						label.setVisible(true);
 						label.setText(Idioma.getIdioma().getProperty("exportacionvalida"));
 					} catch (IOException oy) {
 						oy.printStackTrace();
+						label.setVisible(true);
 						label.setText(Idioma.getIdioma().getProperty("exportacioninvalida"));
 					}
 				}else {
+					label.setVisible(true);
 					label.setText(Idioma.getIdioma().getProperty("archivoyaexiste"));
 				}
 			}
@@ -201,13 +203,12 @@ public class LyricsControlador {
 	 */
 	public void busqueda(JTextField input){
 		ResultSet rs = null;
-		Conexion cn = Conexion.getCon();
 		Statement stmt;
     	String textoInput = input.getText();
     	
 		try {
 			String sql = "INSERT INTO Busquedas (idUsuario, urlbusqueda,fechaBusqueda) VALUES (?, ?, ?)";
-			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			PreparedStatement preparedStatement = Conexion.getCon().getConexion().prepareStatement(sql);
 			preparedStatement.setInt(1, UsuarioModel.getUser().getidUsuario());
 			System.out.println( UsuarioModel.getUser().getidUsuario());
 			preparedStatement.setString(2, textoInput);
@@ -222,11 +223,10 @@ public class LyricsControlador {
 	//Consultamos si en nuestra base de datos tenemos una letra para la cancion que se ha buscado y no se encuentra en la api
 	public void consultaEnLetras(JTextArea textarea, String[] tituloCancion){
 		ResultSet rs = null;
-		Conexion con = Conexion.getCon();
 	    PreparedStatement stmt;
 	    String query = "SELECT * FROM `Letras` where artista like ? and titulo like ? LIMIT 1";
 		try {
-			stmt = con.getConexion().prepareStatement(query);
+			stmt = Conexion.getCon().getConexion().prepareStatement(query);
 			stmt.setString(1, this.tituloCancion[0].trim());
 			stmt.setString(2, this.tituloCancion[1].trim());
 			rs = stmt.executeQuery();
@@ -255,7 +255,8 @@ public class LyricsControlador {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				InicioVista inc = new InicioVista();
+				done = false;
+				InicioVista2 inc = new InicioVista2();
 				inc.frame.setVisible(true);
 			}
 		});

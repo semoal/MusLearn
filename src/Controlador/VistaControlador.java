@@ -5,10 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import Vista.AnyadirLetra;
-import Vista.LyricsVista;
-import Vista.PerfilVista;
-import Vista.RankingView;
+import Vista.AnyadirLetra2;
+import Vista.LyricsVista2;
+import Vista.RankingView2;
 
 public class VistaControlador {
 	/**
@@ -18,7 +17,7 @@ public class VistaControlador {
 	public void goMain(JButton addLetra){
 		addLetra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AnyadirLetra frame = new AnyadirLetra();
+				AnyadirLetra2 frame = new AnyadirLetra2();
 				frame.frame.setVisible(true);
 			}
 		});
@@ -30,7 +29,7 @@ public class VistaControlador {
 	public void goRanking(JButton ranking){
 		ranking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RankingView window = new RankingView();
+				RankingView2 window = new RankingView2();
 				window.frame.setVisible(true);
 			}
 		});
@@ -42,7 +41,7 @@ public class VistaControlador {
 	public void goLetra(JButton ranking){
 		ranking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LyricsVista window = new LyricsVista();
+				LyricsVista2 window = new LyricsVista2();
 				window.frame.setVisible(true);
 			}
 		});

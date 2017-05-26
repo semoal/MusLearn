@@ -20,8 +20,7 @@ import Encriptacion.Encriptacion;
 import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.UsuarioModel;
-import Vista.AccesoVista;
-import Vista.RegistroVista;
+import Vista.AccesoVista2;
 
 public class RegistroControlador {
 	private boolean ok = false;
@@ -63,13 +62,12 @@ public class RegistroControlador {
 	//Metodo que haga el insert
 	public void insertUsuario(UsuarioModel us){
 		ResultSet rs = null;
-		Conexion cn = Conexion.getCon();
     	Statement stmt;
     	Encriptacion md5 = new Encriptacion();
     	
 		try {
 			String sql = "INSERT INTO Usuarios (usuario, contrasenya,fecharegistro,rol) VALUES (?, ?, ?, ?)";
-			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			PreparedStatement preparedStatement = Conexion.getCon().getConexion().prepareStatement(sql);
 			preparedStatement.setString(1, us.getAlias());
 			preparedStatement.setString(2, md5.encriptar(us.getPassword()));
 			preparedStatement.setDate(3, new java.sql.Date(us.getFecharegistro().getTime()));
@@ -88,7 +86,7 @@ public class RegistroControlador {
 	public void volverAcceso(JButton button,JFrame x){
 		button.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent e) {
-		  		AccesoVista window = new AccesoVista();
+		  		AccesoVista2 window = new AccesoVista2();
 				window.frame.setVisible(true);
 		  		x.dispose();
 		  	}

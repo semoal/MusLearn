@@ -17,8 +17,7 @@ import javax.swing.JTextField;
 import Modelo.Conexion;
 import Modelo.Idioma;
 import Modelo.UsuarioModel;
-import Vista.AccesoVista;
-import Vista.InvitadoVista;
+import Vista.AccesoVista2;
 
 public class InvitadoControlador {
 
@@ -53,11 +52,10 @@ public class InvitadoControlador {
 	//Metodo que haga el insert
 	public void insertInvitado(UsuarioModel us){
 		ResultSet rs = null;
-		Conexion cn = Conexion.getCon();
 		Statement stmt;
 		try {
 			String sql = "INSERT INTO Usuarios (usuario,contrasenya, rol, fecharegistro) VALUES (?, ?, ?, ?)";
-			PreparedStatement preparedStatement = cn.getConexion().prepareStatement(sql);
+			PreparedStatement preparedStatement = Conexion.getCon().getConexion().prepareStatement(sql);
 			preparedStatement.setString(1, us.getAlias());
 			preparedStatement.setString(2, us.getPassword());
 			preparedStatement.setString(3, us.getRol());
@@ -79,7 +77,7 @@ public class InvitadoControlador {
 	public void volverAcceso(JButton button,JFrame x){
 		button.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent e) {
-		  		AccesoVista window = new AccesoVista();
+		  		AccesoVista2 window = new AccesoVista2();
 				window.frame.setVisible(true);
 		  		x.dispose();
 		  	}
