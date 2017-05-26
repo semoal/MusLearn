@@ -53,7 +53,7 @@ public class AnyadirLetra2 {
 		Color greyCustom = Color.decode("#f3f5f6");
 		
 		JButton closeButton = new JButton("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/images.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(AnyadirLetra2.class.getResource("/Imagen/images.png")).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		closeButton.setIcon(imageIcon);
 		closeButton.setBorder(null);
 		closeButton.addActionListener(new ActionListener() {
@@ -79,7 +79,7 @@ public class AnyadirLetra2 {
 		frame.getContentPane().add(txtArtista);
 		
 		JLabel label = new JLabel();
-		label.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/textpane.png"));
+		label.setIcon(new ImageIcon(AnyadirLetra2.class.getResource("/Imagen/textpane.png")));
 		label.setBounds(17, 68, 304, 43);
 		frame.getContentPane().add(label);
 		
@@ -110,7 +110,7 @@ public class AnyadirLetra2 {
 		frame.getContentPane().add(button_1);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/volver.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		button.setIcon(new ImageIcon(new ImageIcon(AnyadirLetra2.class.getResource("/Imagen/volver.png")).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		button.setBounds(590, 17, 36, 37);
 		button.setBorder(null);
 		button.setBackground(null);
@@ -132,18 +132,18 @@ public class AnyadirLetra2 {
 		frame.getContentPane().add(lblIniciarSesin);
 		
 		JLabel imageiniciar = new JLabel("");
-		imageiniciar.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
+		imageiniciar.setIcon(new ImageIcon(new ImageIcon(AnyadirLetra2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
 		imageiniciar.setBounds(350, 17, 139, 39);
 		frame.getContentPane().add(imageiniciar);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/textpane.png").getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
+		lblNewLabel_1.setIcon(new ImageIcon(new ImageIcon(AnyadirLetra2.class.getResource("/Imagen/textpane.png")).getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
 		lblNewLabel_1.setBounds(17, 17, 304, 43);
 		frame.getContentPane().add(lblNewLabel_1);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/background.png"));
+		lblNewLabel.setIcon(new ImageIcon(AnyadirLetra2.class.getResource("/Imagen/background.png")));
 		lblNewLabel.setBounds(-18, -34, 708, 520);
 		frame.getContentPane().add(lblNewLabel);
 		

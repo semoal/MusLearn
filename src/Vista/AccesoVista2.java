@@ -41,7 +41,7 @@ public class AccesoVista2 {
 		frame.getContentPane().setLayout(null);
 		
 		JButton closeButton = new JButton("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/images.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/images.png")).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		closeButton.setIcon(imageIcon);
 		closeButton.setBorder(null);
 		closeButton.addActionListener(new ActionListener() {
@@ -128,24 +128,24 @@ public class AccesoVista2 {
 		
 		JLabel btn1label = new JLabel("");
 		btn1label.setHorizontalAlignment(SwingConstants.CENTER);
-		btn1label.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+		btn1label.setIcon(new ImageIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		btn1label.setBounds(6, 356, 170, 43);
 		frame.getContentPane().add(btn1label);
 		
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+		label_3.setIcon(new ImageIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setBounds(263, 356, 170, 43);
 		frame.getContentPane().add(label_3);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+		label_1.setIcon(new ImageIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setBounds(490, 356, 170, 43);
 		frame.getContentPane().add(label_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/background.png"));
+		label.setIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/background.png")));
 		label.setBounds(0, -30, 666, 511);
 		frame.getContentPane().add(label);
 	}

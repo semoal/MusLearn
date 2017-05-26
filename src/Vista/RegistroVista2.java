@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
 import Controlador.RegistroControlador;
+import Inicio.Splash2;
 import Modelo.Idioma;
 
 import java.awt.Color;
@@ -51,7 +52,7 @@ public class RegistroVista2 {
 		Color greyCustom = Color.decode("#f3f5f6");
 		
 		JButton closeButton = new JButton("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/images.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(Splash2.class.getResource("/Imagen/images.png")).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		closeButton.setIcon(imageIcon);
 		closeButton.setBorder(null);
 		closeButton.addActionListener(new ActionListener() {
@@ -63,7 +64,7 @@ public class RegistroVista2 {
 		
 		JLabel lblCargando = new JLabel((Idioma.getIdioma().getProperty("cargando")));
 		lblCargando.setBackground(Color.LIGHT_GRAY);
-		lblCargando.setIcon(new ImageIcon(LoginVista2.class.getResource("/Imagen/loader.gif")));
+		lblCargando.setIcon(new ImageIcon(RegistroVista2.class.getResource("/Imagen/loader.gif")));
 		lblCargando.setVisible(false);
 		
 		JLabel lblUsuario = new JLabel(Idioma.getIdioma().getProperty("usuario"));
@@ -87,7 +88,7 @@ public class RegistroVista2 {
 				frame.getContentPane().add(lblStatus);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/volver.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		button.setIcon(new ImageIcon(new ImageIcon(RegistroVista2.class.getResource("/Imagen/volver.png")).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		button.setBounds(590, 17, 36, 37);
 		button.setBorder(null);
 		button.setBackground(null);
@@ -117,7 +118,7 @@ public class RegistroVista2 {
 		frame.getContentPane().add(passwordField_1);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/textpane.png").getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
+		label_1.setIcon(new ImageIcon(new ImageIcon(RegistroVista2.class.getResource("/Imagen/textpane.png")).getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
 		label_1.setBounds(213, 230, 304, 43);
 		frame.getContentPane().add(label_1);
 		
@@ -135,22 +136,22 @@ public class RegistroVista2 {
 		frame.getContentPane().add(lblIniciarSesin);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/textpane.png").getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
+		lblNewLabel_1.setIcon(new ImageIcon(new ImageIcon(RegistroVista2.class.getResource("/Imagen/textpane.png")).getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
 		lblNewLabel_1.setBounds(213, 115, 304, 43);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/textpane.png").getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
+		label.setIcon(new ImageIcon(new ImageIcon(RegistroVista2.class.getResource("/Imagen/textpane.png")).getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
 		label.setBounds(213, 173, 304, 43);
 		frame.getContentPane().add(label);
 		
 		JLabel imageiniciar = new JLabel("");
-		imageiniciar.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
+		imageiniciar.setIcon(new ImageIcon(new ImageIcon(RegistroVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
 		imageiniciar.setBounds(213, 296, 304, 43);
 		frame.getContentPane().add(imageiniciar);
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/background.png"));
+		lblNewLabel.setIcon(new ImageIcon(RegistroVista2.class.getResource("/Imagen/background.png")));
 		lblNewLabel.setBounds(-18, -34, 708, 520);
 		frame.getContentPane().add(lblNewLabel);
 		

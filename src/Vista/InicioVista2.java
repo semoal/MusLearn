@@ -41,7 +41,7 @@ public class InicioVista2 {
 		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/images.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/images.png")).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		
 		JButton closeButton = new JButton("");
 		closeButton.setIcon(imageIcon);
@@ -75,7 +75,7 @@ public class InicioVista2 {
 		frame.getContentPane().add(lyrics);
 		
 		JLabel label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png"));
+		label_4.setIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/loginbutton.png")));
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setBounds(478, 279, 170, 43);
 		frame.getContentPane().add(label_4);
@@ -94,7 +94,7 @@ public class InicioVista2 {
 		frame.getContentPane().add(lblGuest);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+		label_1.setIcon(new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setBounds(478, 83, 170, 43);
 		frame.getContentPane().add(label_1);
@@ -118,7 +118,7 @@ public class InicioVista2 {
 		frame.getContentPane().add(btnRegister);
 		
 		JLabel label_3 = new JLabel();
-		label_3.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+		label_3.setIcon(new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setBounds(22, 279, 170, 43);
 		frame.getContentPane().add(label_3);
@@ -137,7 +137,7 @@ public class InicioVista2 {
 		frame.getContentPane().add(btnLogin);
 		
 		JButton button2 = new JButton("");
-		button2.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/volver.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		button2.setIcon(new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/volver.png")).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		button2.setBounds(590, 17, 36, 37);
 		button2.setBorder(null);
 		button2.setBackground(null);
@@ -146,7 +146,7 @@ public class InicioVista2 {
 		
 		JLabel btn1label = new JLabel("");
 		btn1label.setHorizontalAlignment(SwingConstants.CENTER);
-		btn1label.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+		btn1label.setIcon(new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		btn1label.setBounds(22, 83, 170, 43);
 		frame.getContentPane().add(btn1label);
 		
@@ -161,7 +161,7 @@ public class InicioVista2 {
 		frame.getContentPane().add(info);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/background.png"));
+		label.setIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/background.png")));
 		label.setBounds(0, -30, 666, 511);
 		frame.getContentPane().add(label);
 		
@@ -170,15 +170,15 @@ public class InicioVista2 {
 		int total = max - busquedas;
 		if(UsuarioModel.getUser().getBusquedas()>=5 && UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){
 			btnLogin.setEnabled(false);
-			btn1label.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbuttondisabled.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+			btn1label.setIcon(new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/loginbuttondisabled.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		}else{
 			btnLogin.setEnabled(true);
-			btn1label.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+			btn1label.setIcon(new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		}
 		if(UsuarioModel.getUser().getRol().equalsIgnoreCase("invitado")){
 			info.setText(Idioma.getIdioma().getProperty("invitadocheck"));
 			info2.setText(Idioma.getIdioma().getProperty("tequedan")+" "+total+" "+Idioma.getIdioma().getProperty("busquedas2"));
-			label_4.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbuttondisabled.png").getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
+			label_4.setIcon(new ImageIcon(new ImageIcon(InicioVista2.class.getResource("/Imagen/loginbuttondisabled.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 
 		}
 		

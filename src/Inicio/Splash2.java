@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import Vista.AccesoVista2;
+import Vista.LoginVista2;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -40,7 +41,7 @@ public class Splash2 {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(customBlue);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("/Imagen/splash.gif"));
+		lblNewLabel.setIcon(new ImageIcon(Splash2.class.getResource("/Imagen/splash.gif")));
 		lblNewLabel.setBounds(0, 0, 650, 400);
 		frame.getContentPane().add(lblNewLabel);
 		iniciarHilo(lblCargando);

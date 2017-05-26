@@ -51,7 +51,7 @@ public class RankingView2 {
 		Color greyCustom = Color.decode("#f3f5f6");
 		
 		JButton closeButton = new JButton("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/images.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(RankingView2.class.getResource("/Imagen/images.png")).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		closeButton.setIcon(imageIcon);
 		closeButton.setBorder(null);
 		closeButton.addActionListener(new ActionListener() {
@@ -124,12 +124,12 @@ public class RankingView2 {
 		frame.getContentPane().add(tituloUsuario);
 		
 		JLabel fondoTituloUsuario = new JLabel();
-		fondoTituloUsuario.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/textpane.png"));
+		fondoTituloUsuario.setIcon(new ImageIcon(RankingView2.class.getResource("/Imagen/textpane.png")));
 		fondoTituloUsuario.setBounds(17, 17, 304, 43);
 		frame.getContentPane().add(fondoTituloUsuario);
 		
 		JButton btnVolver = new JButton("");
-		btnVolver.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/volver.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		btnVolver.setIcon(new ImageIcon(new ImageIcon(RankingView2.class.getResource("/Imagen/volver.png")).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		btnVolver.setBounds(590, 17, 36, 37);
 		btnVolver.setBorder(null);
 		btnVolver.setBackground(null);
@@ -143,7 +143,7 @@ public class RankingView2 {
 		frame.getContentPane().add(lblIniciarSesin);
 		
 		JLabel imageiniciar = new JLabel("");
-		imageiniciar.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
+		imageiniciar.setIcon(new ImageIcon(new ImageIcon(RankingView2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(304,43, Image.SCALE_DEFAULT)));
 		imageiniciar.setBounds(350, 17, 228, 39);
 		frame.getContentPane().add(imageiniciar);
 		
@@ -153,7 +153,7 @@ public class RankingView2 {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/background.png"));
+		lblNewLabel.setIcon(new ImageIcon(RankingView2.class.getResource("/Imagen/background.png")));
 		lblNewLabel.setBounds(-18, -34, 708, 520);
 		frame.getContentPane().add(lblNewLabel);
 		

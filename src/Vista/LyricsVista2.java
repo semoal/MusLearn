@@ -109,7 +109,7 @@ public class LyricsVista2 {
 		frame.getContentPane().add(exportarBtn);
 		
 		JButton volver = new JButton("");
-		volver.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/volver.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		volver.setIcon(new ImageIcon(new ImageIcon(LyricsVista2.class.getResource("/Imagen/volver.png")).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		volver.setBorder(null);
 		volver.setBackground((Color) null);
 		volver.setBounds(623, 21, 30, 31);
@@ -123,7 +123,7 @@ public class LyricsVista2 {
 		frame.getContentPane().add(exportarTitle);
 		
 		JLabel exportarLbl = new JLabel("");
-		exportarLbl.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(119,31, Image.SCALE_DEFAULT)));
+		exportarLbl.setIcon(new ImageIcon(new ImageIcon(LyricsVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(119,31, Image.SCALE_DEFAULT)));
 		exportarLbl.setBounds(475, 21, 119, 31);
 		frame.getContentPane().add(exportarLbl);
 		
@@ -140,13 +140,13 @@ public class LyricsVista2 {
 		frame.getContentPane().add(buscarTitle);
 		
 		JLabel buscarLbl = new JLabel("");
-		buscarLbl.setIcon(new ImageIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/loginbutton.png").getImage().getScaledInstance(119,31, Image.SCALE_DEFAULT)));
+		buscarLbl.setIcon(new ImageIcon(new ImageIcon(LyricsVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(119,31, Image.SCALE_DEFAULT)));
 		buscarLbl.setBounds(343, 21, 119, 31);
 		frame.getContentPane().add(buscarLbl);
 		
 		JLabel background = new JLabel("");
 		background.setHorizontalAlignment(SwingConstants.CENTER);
-		background.setIcon(new ImageIcon("/Users/sergiomoreno/Desktop/pruebaframe/background.png"));
+		background.setIcon(new ImageIcon(LyricsVista2.class.getResource("/Imagen/background.png")));
 		background.setBounds(-34, -37, 740, 524);
 		frame.getContentPane().add(background);
 		
