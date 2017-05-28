@@ -165,10 +165,15 @@ String sql = "select urlBusqueda,count(*) as busquedas from Busquedas b group by
 				String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
 			    DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
 				final String top = "Top 10";
-					for (int i=0; i<list.size();i++){
-					      dataset.addValue(list.get(i).getBusquedasGlobales() , xd.urlAtitulo(list.get(i).getUrlYoutube()) , top );
+					if(list.size()>10){
+						for (int i=0; i<10;i++){
+						      dataset.addValue(list.get(i).getBusquedasGlobales() , xd.urlAtitulo(list.get(i).getUrlYoutube()) , top );
+						}
+					}else{
+						for (int i=0; i<list.size();i++){
+						      dataset.addValue(list.get(i).getBusquedasGlobales() , xd.urlAtitulo(list.get(i).getUrlYoutube()) , top );
+						}
 					}
-
 					
 			        JFreeChart chart = ChartFactory.createBarChart(
 			                Idioma.getIdioma().getProperty("busq"), 
