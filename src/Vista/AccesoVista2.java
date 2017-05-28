@@ -62,25 +62,25 @@ public class AccesoVista2 {
 		JLabel lblGuest = new JLabel("Guest");
 		lblGuest.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGuest.setForeground(Color.WHITE);
-		lblGuest.setBounds(490, 356, 170, 43);
+		lblGuest.setBounds(470, 356, 170, 43);
 		frame.getContentPane().add(lblGuest);
 		
 		btnGuest = new JButton("");
 		btnGuest.setBorder(null);
 		btnGuest.setBackground((Color) null);
-		btnGuest.setBounds(490, 356, 170, 43);
+		btnGuest.setBounds(470, 356, 170, 43);
 		frame.getContentPane().add(btnGuest);
 		//Ir registro
 		JLabel lblRegister = new JLabel("Register");
 		lblRegister.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegister.setForeground(Color.WHITE);
-		lblRegister.setBounds(263, 356, 170, 43);
+		lblRegister.setBounds(254, 356, 170, 43);
 		frame.getContentPane().add(lblRegister);
 		
 		btnRegister = new JButton("");
 		btnRegister.setBorder(null);
 		btnRegister.setBackground((Color) null);
-		btnRegister.setBounds(263, 356, 170, 43);
+		btnRegister.setBounds(254, 356, 170, 43);
 		frame.getContentPane().add(btnRegister);
 		closeButton.setBounds(628, 17, 25, 37);
 		frame.getContentPane().add(closeButton);
@@ -88,13 +88,13 @@ public class AccesoVista2 {
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setForeground(Color.WHITE);
-		lblLogin.setBounds(6, 356, 170, 43);
+		lblLogin.setBounds(43, 356, 170, 43);
 		frame.getContentPane().add(lblLogin);
 		
 		btnLogin = new JButton("");
 		btnLogin.setBorder(null);
 		btnLogin.setBackground((Color) null);
-		btnLogin.setBounds(6, 356, 170, 43);
+		btnLogin.setBounds(43, 356, 170, 43);
 		frame.getContentPane().add(btnLogin);
 		ac.irAcceder(btnLogin, frame);
 		ac.irInvitado(btnGuest, frame);
@@ -129,19 +129,19 @@ public class AccesoVista2 {
 		JLabel btn1label = new JLabel("");
 		btn1label.setHorizontalAlignment(SwingConstants.CENTER);
 		btn1label.setIcon(new ImageIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
-		btn1label.setBounds(6, 356, 170, 43);
+		btn1label.setBounds(43, 356, 170, 43);
 		frame.getContentPane().add(btn1label);
 		
 		JLabel label_3 = new JLabel("");
 		label_3.setIcon(new ImageIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBounds(263, 356, 170, 43);
+		label_3.setBounds(254, 356, 170, 43);
 		frame.getContentPane().add(label_3);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(new ImageIcon(AccesoVista2.class.getResource("/Imagen/loginbutton.png")).getImage().getScaledInstance(170,43, Image.SCALE_DEFAULT)));
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(490, 356, 170, 43);
+		label_1.setBounds(470, 356, 170, 43);
 		frame.getContentPane().add(label_1);
 		
 		JLabel label = new JLabel("");

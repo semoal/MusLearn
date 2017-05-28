@@ -26,13 +26,13 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
-public class LoginVista2 {
+public class LoginActive {
 
 	public JFrame frame;
 	private JTextField txtUsuario;
 	private JPasswordField passwordField;
 
-	public LoginVista2() {
+	public LoginActive() {
 		initialize();
 	}
 
@@ -46,7 +46,9 @@ public class LoginVista2 {
 		frame.getContentPane().setLayout(null);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setText(Idioma.getIdioma().getProperty("usuario"));
+		txtUsuario.setEnabled(false);
+		txtUsuario.setEditable(false);
+		txtUsuario.setText("Grupo2\\Administrador");
 		txtUsuario.setToolTipText("");
 		Color greyCustom = Color.decode("#f3f5f6");
 		
@@ -127,36 +129,7 @@ public class LoginVista2 {
 		imageiniciar.setBounds(185, 237, 304, 43);
 		frame.getContentPane().add(imageiniciar);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(192, 292, 297, 27);
-		frame.getContentPane().add(comboBox);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {Idioma.getIdioma().getProperty("usuarioreg"), Idioma.getIdioma().getProperty("usuarioinv"), "Active Directory"}));
-		  comboBox.addActionListener(
-		          new ActionListener(){
-		              public void actionPerformed(ActionEvent e){
-		                  JComboBox combo = (JComboBox)e.getSource();
-		                  String currentUser = (String)combo.getSelectedItem();
-		                  if(currentUser.equalsIgnoreCase(Idioma.getIdioma().getProperty("usuarioreg"))){
-		                	  passwordField.enable();
-		                	  passwordField.setEnabled(true);
-		                	  passwordField.setBackground(greyCustom);
-		                	  label.setVisible(true);
-		                  }else if(currentUser.equalsIgnoreCase(Idioma.getIdioma().getProperty("usuarioinv"))){
-		                	  Color greyCustom = Color.decode("#c1c1bf");
-		                	  label.setVisible(false);
-		                	  passwordField.disable();
-		                	  passwordField.setText("");
-		                	  passwordField.setEnabled(false);
-		                	  passwordField.setBackground(greyCustom);
-		                  }else{
-		                	  frame.dispose();
-		                	  LoginActive loginAa = new LoginActive();
-		                	  loginAa.frame.setVisible(true);
-		                  }
-		              }
-		          }            
-		  );
-		lg.ejecutaTodo(loginButton, txtUsuario, passwordField, lblStatus, lblCargando, frame);
+		lg.activeDirectoryLogin(loginButton, passwordField,lblCargando,lblStatus,frame);
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(LoginVista2.class.getResource("/Imagen/background.png")));

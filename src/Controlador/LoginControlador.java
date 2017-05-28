@@ -6,7 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Hashtable;
 
+import javax.naming.Context;
+import javax.naming.NamingException;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -106,6 +111,57 @@ public class LoginControlador {
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void activeDirectoryLogin(JButton login, JTextField password, JLabel cargando,JLabel error,JFrame frame){
+		login.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		if(!password.getText().isEmpty()){
+			  		cargando.setVisible(true);
+		  		}
+		  		new Thread(new Runnable(){
+				    @Override
+				    public void run(){
+				    	if(!password.getText().isEmpty()){
+				  			pwd = password.getText();
+				  			String pass = password.getText();
+				  			Hashtable<String, String> env = new Hashtable<String, String>();
+				  			env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+				  			env.put(Context.SECURITY_AUTHENTICATION, "simple");
+				  			env.put(Context.PROVIDER_URL, "ldap://10.2.72.133");
+				  			
+				  			//Rellenamos con el usuario/dominio y password
+				  			env.put(Context.SECURITY_PRINCIPAL, "Administrador@grupo2.com");
+				  			env.put(Context.SECURITY_CREDENTIALS, pass);
+
+				  			DirContext ctx;
+
+				  			try {
+				  				// Authenticate the logon user
+				  				ctx = new InitialDirContext(env);
+					  			done = true;
+				  				System.out.println("El usuario se ha autenticado correctamente");
+				  				InicioVista2 iv = new InicioVista2();
+				  				iv.frame.setVisible(true);
+				  				frame.dispose();
+				  				ctx.close();
+				  			} catch (NamingException ex) {
+				  				System.out.println("Ha habido un error en la autenticación");
+				  			}
+				  		}else{
+				  			error.setText(Idioma.getIdioma().getProperty("loginusuarioincorrecto"));
+				  		}	
+				       if(done){
+				         SwingUtilities.invokeLater(new Runnable(){
+				             @Override public void run(){
+				                cargando.setVisible(false);      
+				           }
+				          });
+				       }
+				    }
+				}).start();
+		  	}
+		  });
 	}
 	
 	public void volverAcceso(JButton button,JFrame x){
